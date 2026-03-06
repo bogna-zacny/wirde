@@ -24,8 +24,7 @@ jobs:
         with:
           cache: true
           packages: |
-            ggplot2
-            dplyr
+            tidyverse
             tidyr
             patchwork
 

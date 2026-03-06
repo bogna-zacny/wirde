@@ -1,0 +1,68 @@
+# Podsumowanie i słowniczek {#sec-summary}
+
+## Tabela porównawcza: R vs Python
+
+| Operacja | R (tidyverse) | Python (pandas) |
+|---|---|---|
+| Wczytaj CSV | `read_csv("plik.csv")` | `pd.read_csv("plik.csv")` |
+| Podgląd danych | `head(df)` | `df.head()` |
+| Struktura | `glimpse(df)` | `df.info()` |
+| Statystyki | `summary(df)` | `df.describe()` |
+| Wybierz kolumnę | `df$col` lub `select(df, col)` | `df["col"]` |
+| Filtrowanie | `filter(df, col > 5)` | `df[df["col"] > 5]` lub `df.query(...)` |
+| Nowa kolumna | `mutate(df, nowa = col * 2)` | `df["nowa"] = df["col"] * 2` |
+| Sortowanie | `arrange(df, col)` | `df.sort_values("col")` |
+| Grupowanie | `group_by(df, col)` | `df.groupby("col")` |
+| Agregacja | `summarise(sr = mean(x))` | `.agg({"x": "mean"})` |
+| Złączenie tabel | `left_join(df1, df2, by="id")` | `pd.merge(df1, df2, on="id")` |
+| Braki — wykryj | `is.na(df)` | `df.isna()` |
+| Braki — usuń | `na.omit(df)` | `df.dropna()` |
+| Braki — zastąp | `mutate(df, x = ifelse(is.na(x), 0, x))` | `df.fillna(0)` |
+| Wykres liniowy | `geom_line()` | `ax.plot()` |
+| Słupkowy | `geom_col()` | `ax.bar()` / `ax.barh()` |
+| Histogram | `geom_histogram()` | `ax.hist()` |
+| Punktowy | `geom_point()` | `ax.scatter()` |
+| Wiele wykresów | `patchwork` (`p1 \| p2`) | `plt.subplots(1, 2)` |
+| Zapis wykresu | `ggsave("plik.png")` | `fig.savefig("plik.png")` |
+
+## Kiedy R, kiedy Python?
+
+**R** jest często preferowany gdy:
+
+- pracujesz głównie z analizą statystyczną i raportami (Quarto / R Markdown),
+- zależy Ci na pięknych wykresach z relatywnie małą ilością kodu (`ggplot2`),
+- Twoja dziedzina to ekonometria, statystyka, biostatystyka.
+
+**Python** jest często preferowany gdy:
+
+- chcesz łączyć analizę danych z automatyzacją i programowaniem,
+- pracujesz z dużymi zbiorami danych lub budujesz modele uczenia maszynowego,
+- tworzysz aplikacje lub skrypty do automatyzacji raportowania.
+
+::: {.callout-tip}
+## Co wybrać?
+
+Wybór nie jest konieczny. Wiele osób używa obu języków zależnie od zadania, a logika pracy z danymi jest taka sama — zmieniają się tylko nazwy funkcji.
+:::
+
+---
+
+
+## Słowniczek pojęć
+
+| Pojęcie PL | Termin EN | R | Python |
+|---|---|---|---|
+| Ramka danych | Data frame | `data.frame` / `tibble` | `DataFrame` |
+| Seria / Kolumna | Series | wektor `c()` | `Series` |
+| Brak danych | Missing value | `NA` | `None` / `np.nan` |
+| Wartość odstająca | Outlier | — | — |
+| Agregacja | Aggregation | `summarise()` | `.agg()` |
+| Grupowanie | Grouping | `group_by()` | `.groupby()` |
+| Filtrowanie | Filtering | `filter()` | `query()` / indeksowanie |
+| Złączenie | Join / Merge | `*_join()` | `pd.merge()` |
+| Sortowanie | Sorting | `arrange()` | `.sort_values()` |
+| Pivotowanie | Reshaping | `pivot_longer()` / `pivot_wider()` | `.melt()` / `.pivot_table()` |
+| Indeksowanie | Indexing | `[ ]` (od 1) | `[ ]` (od 0), `.iloc`, `.loc` |
+| Operator potoku | Pipe operator | `\|>` | brak (łańcuchowanie metodami `.`) |
+| Wektoryzacja | Vectorization | natywna | NumPy / pandas |
+| Pakiet | Package / Library | `install.packages()`, `library()` | `pip install`, `import` |

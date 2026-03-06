@@ -194,3 +194,147 @@ pensje[pensje > np.mean(pensje)] # powyżej średniej
 ```
 
 :::
+
+
+## Zmienne jakościowe — factor i categorical
+
+::: {.callout-note}
+## Czym jest factor?
+
+Wyobraź sobie kolumnę w Excelu z wartościami "niskie", "średnie", "wysokie". 
+Excel traktuje je jako zwykły tekst i sortuje alfabetycznie: "niskie", 
+"średnie", "wysokie" — co akurat tutaj działa, ale "styczeń", "luty", 
+"marzec" posortuje już błędnie: "luty", "marzec", "styczeń".
+
+**Factor** (R) i **Categorical** (Python) to typy danych które "wiedzą" 
+jaka jest właściwa kolejność kategorii — niezależnie od alfabetu.
+:::
+
+::: {.panel-tabset}
+
+## R
+```{r}
+# Zwykły wektor tekstowy — sortuje alfabetycznie
+miesiace_text <- c("marzec", "styczeń", "luty", "marzec", "styczeń")
+sort(miesiace_text)   # błędna kolejność: luty, marzec, styczeń
+```
+```{r}
+# Factor — definiujemy właściwą kolejność
+miesiace_factor <- factor(
+  miesiace_text,
+  levels = c("styczeń", "luty", "marzec")
+)
+
+sort(miesiace_factor)   # poprawna kolejność: styczeń, styczeń, luty, marzec, marzec
+
+# Factor "pamięta" wszystkie możliwe kategorie (levels)
+levels(miesiace_factor)
+
+# Zliczanie — pokazuje też kategorie z zerową liczebnością
+table(miesiace_factor)
+```
+```{r}
+# Factor uporządkowany (ordered) — gdy kategorie mają naturalną hierarchię
+wyksztalcenie <- factor(
+  c("wyższe", "średnie", "podstawowe", "wyższe", "średnie"),
+  levels  = c("podstawowe", "średnie", "wyższe"),
+  ordered = TRUE
+)
+
+# Można porównywać kategorie
+wyksztalcenie[1] > wyksztalcenie[2]   # wyższe > średnie → TRUE
+min(wyksztalcenie)                     # podstawowe
+```
+```{r}
+# Praktyczny przykład — factor na wykresie
+library(ggplot2)
+
+sprzedaz <- data.frame(
+  miesiac = factor(
+    c("sty", "lut", "mar", "kwi", "maj", "cze"),
+    levels = c("sty", "lut", "mar", "kwi", "maj", "cze")
+  ),
+  wartosc = c(120, 95, 140, 160, 175, 155)
+)
+
+# Bez factora miesiące byłyby posortowane alfabetycznie!
+ggplot(sprzedaz, aes(x = miesiac, y = wartosc)) +
+  geom_col(fill = "steelblue") +
+  labs(title = "Sprzedaż według miesiąca",
+       x = NULL, y = "Wartość (tys. PLN)") +
+  theme_minimal()
+```
+
+## Python
+```python
+import pandas as pd
+
+# Zwykła seria tekstowa — sortuje alfabetycznie
+miesiace_text = pd.Series(["marzec", "styczeń", "luty", "marzec", "styczeń"])
+miesiace_text.sort_values()   # błędna kolejność: luty, marzec, styczeń
+```
+```python
+# Categorical — definiujemy właściwą kolejność
+miesiace_cat = pd.Categorical(
+    miesiace_text,
+    categories=["styczeń", "luty", "marzec"],
+    ordered=True
+)
+
+pd.Series(miesiace_cat).sort_values()  # poprawna kolejność
+
+# Dostępne kategorie
+miesiace_cat.categories
+
+# Zliczanie
+pd.Series(miesiace_cat).value_counts().sort_index()
+```
+```python
+# Categorical w kolumnie DataFrame
+df = pd.DataFrame({
+    "wyksztalcenie": pd.Categorical(
+        ["wyższe", "średnie", "podstawowe", "wyższe", "średnie"],
+        categories=["podstawowe", "średnie", "wyższe"],
+        ordered=True
+    ),
+    "pensja": [6500, 4800, 3200, 7100, 4200]
+})
+
+# Sortowanie respektuje kolejność kategorii
+df.sort_values("wyksztalcenie")
+
+# Porównania
+df["wyksztalcenie"] > "średnie"
+```
+```python
+# Praktyczny przykład — Categorical na wykresie
+import matplotlib.pyplot as plt
+
+sprzedaz = pd.DataFrame({
+    "miesiac": pd.Categorical(
+        ["sty", "lut", "mar", "kwi", "maj", "cze"],
+        categories=["sty", "lut", "mar", "kwi", "maj", "cze"],
+        ordered=True
+    ),
+    "wartosc": [120, 95, 140, 160, 175, 155]
+}).sort_values("miesiac")
+
+fig, ax = plt.subplots(figsize=(8, 4))
+ax.bar(sprzedaz["miesiac"], sprzedaz["wartosc"], color="steelblue")
+ax.set_title("Sprzedaż według miesiąca")
+ax.set_ylabel("Wartość (tys. PLN)")
+ax.grid(axis="y", alpha=0.3)
+plt.tight_layout()
+plt.show()
+```
+
+:::
+
+::: {.callout-tip}
+## Kiedy używać factora / Categorical?
+
+- Miesiące, dni tygodnia, kwartały — zawsze, gdy kolejność ma znaczenie
+- Skale ocen: "niedostateczny" → "celujący"
+- Poziomy wykształcenia, grupy wiekowe, kategorie dochodowe
+- Wszędzie tam gdzie chcesz kontrolować kolejność na wykresie lub w tabeli
+:::
