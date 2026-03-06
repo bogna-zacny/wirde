@@ -23,11 +23,15 @@ Przez cały podręcznik odwołujemy się do Excela jako punktu odniesienia. Kluc
 | Excel | R | Python |
 |-------|---|--------|
 | Arkusz kalkulacyjny | `data.frame` / `tibble` | `DataFrame` (pandas) |
-| Kolumna | wektor | seria (pandas) |
+| Kolumna | wektor: `vector` | seria: `Series` (pandas) |
 | Komórka | element wektora | element serii |
 | Formuła w kolumnie | operacja na wektorze | operacja na kolumnie |
-| Filtr | `filter()` | `query()` / indeksowanie |
-| Tabela przestawna | `group_by()` + `summarise()` | `groupby()` + `agg()` |
+| Wybieranie kolumn | `select()` / `df[c("col1","col2")]` / `df[["col1","col2"]]` |
+| Filtr | `filter()`/ indeksowanie | `query()` / indeksowanie |
+| Sortowanie | `arrange()` | `.sort_values()` |
+| Modyfikowanie kolumn | `mutate()` | `df["nowa"] = ...` |
+| Agregacja | `group_by()` + `summarise()` | `groupby()` + `agg()` |
+| Tabela przestawna | `pivot_wider()` / `pivot_longer()` | `.pivot_table()` / `.melt()` |
 | Wykres | `ggplot2` | `matplotlib` / `seaborn` |
 :::
 
