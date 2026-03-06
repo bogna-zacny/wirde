@@ -1,0 +1,199 @@
+# Ramki danych {#sec-dataframes}
+
+Ramka danych to serce analizy — odpowiednik arkusza kalkulacyjnego Excel. Każda **kolumna** to wektor (może mieć inny typ danych), każdy **wiersz** to jedna obserwacja (np. jeden pracownik, jeden kraj, jeden rok).
+
+## Tworzenie ramki danych
+
+::: {.panel-tabset}
+
+## R
+
+```{r}
+library(dplyr)
+
+# Tworzenie ramki danych ręcznie
+pracownicy <- data.frame(
+  imie       = c("Anna", "Piotr", "Kasia", "Marek", "Zofia"),
+  pensja     = c(4500, 5200, 4800, 6100, 5500),
+  dzial      = c("IT", "Finanse", "IT", "HR", "Finanse"),
+  staz_lat   = c(3, 7, 2, 10, 5),
+  czy_menedz = c(FALSE, TRUE, FALSE, TRUE, FALSE)
+)
+
+pracownicy
+```
+
+```{r}
+# Podstawowe informacje o ramce
+nrow(pracownicy)    # liczba wierszy
+ncol(pracownicy)    # liczba kolumn
+dim(pracownicy)     # wymiary (wiersze × kolumny)
+names(pracownicy)   # nazwy kolumn
+str(pracownicy)     # struktura — typy każdej kolumny
+```
+
+## Python
+
+```python
+import pandas as pd
+
+# Tworzenie ramki danych ręcznie
+pracownicy = pd.DataFrame({
+    "imie":       ["Anna", "Piotr", "Kasia", "Marek", "Zofia"],
+    "pensja":     [4500, 5200, 4800, 6100, 5500],
+    "dzial":      ["IT", "Finanse", "IT", "HR", "Finanse"],
+    "staz_lat":   [3, 7, 2, 10, 5],
+    "czy_menedz": [False, True, False, True, False]
+})
+
+pracownicy
+```
+
+```python
+# Podstawowe informacje o ramce
+len(pracownicy)            # liczba wierszy
+len(pracownicy.columns)    # liczba kolumn
+pracownicy.shape           # wymiary (wiersze, kolumny) jako krotka
+pracownicy.columns         # nazwy kolumn
+pracownicy.dtypes          # typy kolumn
+pracownicy.info()          # szczegółowe informacje zbiorczo
+```
+
+:::
+
+## Wczytywanie danych z pliku
+
+W praktyce rzadko tworzymy dane ręcznie — najczęściej wczytujemy je z pliku CSV lub Excel.
+
+::: {.panel-tabset}
+
+## R
+
+```r
+library(readr)
+library(readxl)
+
+# Wczytanie pliku CSV (separator przecinek, domyślny)
+dane <- read_csv("dane.csv")
+
+# Wczytanie CSV z polskim formatem (separator średnik, przecinek dziesiętny)
+dane <- read_csv2("dane_pl.csv")
+
+# Wczytanie z Excela
+dane <- read_excel("dane.xlsx", sheet = "Arkusz1")
+
+# Pierwsze spojrzenie na dane
+head(dane)        # pierwsze 6 wierszy
+tail(dane)        # ostatnie 6 wierszy
+glimpse(dane)     # kompaktowy przegląd struktury
+summary(dane)     # statystyki opisowe
+```
+
+::: {.callout-tip}
+`read_csv()` (z pakietu `readr`) jest szybsze i nowocześniejsze niż bazowe `read.csv()`. Automatycznie rozpoznaje typy kolumn i obsługuje polskie znaki.
+:::
+
+## Python
+
+```python
+import pandas as pd
+
+# Wczytanie pliku CSV (separator przecinek, domyślny)
+dane = pd.read_csv("dane.csv")
+
+# Wczytanie CSV z polskim formatem (separator średnik, przecinek dziesiętny)
+dane = pd.read_csv("dane_pl.csv", sep=";", decimal=",")
+
+# Wczytanie z Excela (wymaga pakietu openpyxl)
+dane = pd.read_excel("dane.xlsx", sheet_name="Arkusz1")
+
+# Pierwsze spojrzenie na dane
+dane.head()       # pierwsze 5 wierszy
+dane.tail()       # ostatnie 5 wierszy
+dane.info()       # typy kolumn i liczba braków
+dane.describe()   # statystyki opisowe zmiennych liczbowych
+```
+
+:::
+
+## Wybieranie kolumn i wierszy
+
+::: {.callout-note}
+## Analogia do Excela
+
+Wybieranie danych to jak używanie filtrów i funkcji `INDEKS`/`PODAJ.POZYCJĘ` — tylko znacznie wygodniejsze i szybsze.
+:::
+
+::: {.panel-tabset}
+
+## R
+
+```{r}
+# --- Wybieranie kolumn ---
+
+# Jedna kolumna (zwraca wektor)
+pracownicy$pensja
+pracownicy[["pensja"]]
+
+# Wiele kolumn (zwraca ramkę danych)
+select(pracownicy, imie, pensja)
+select(pracownicy, -czy_menedz)    # wszystkie kolumny OPRÓCZ tej
+```
+
+```{r}
+# --- Wybieranie wierszy ---
+
+# Konkretne wiersze po numerze
+pracownicy[1, ]      # wiersz 1
+pracownicy[2:4, ]    # wiersze 2–4
+
+# Filtrowanie po warunku
+filter(pracownicy, dzial == "IT")
+filter(pracownicy, pensja > 5000)
+filter(pracownicy, dzial == "IT" & staz_lat > 2)   # oba warunki (AND)
+filter(pracownicy, dzial == "IT" | dzial == "HR")   # jeden z warunków (OR)
+```
+
+```{r}
+# --- Wiersze I kolumny jednocześnie (pipe operator) ---
+pracownicy |>
+  filter(pensja > 5000) |>
+  select(imie, pensja)
+```
+
+## Python
+
+```python
+# --- Wybieranie kolumn ---
+
+# Jedna kolumna (zwraca Series)
+pracownicy["pensja"]
+
+# Wiele kolumn (zwraca DataFrame)
+pracownicy[["imie", "pensja"]]
+pracownicy.drop(columns=["czy_menedz"])    # wszystkie OPRÓCZ tej
+```
+
+```python
+# --- Wybieranie wierszy ---
+
+# Konkretne wiersze po pozycji (iloc — pamiętamy: od 0!)
+pracownicy.iloc[0]         # wiersz 0 (pierwszy)
+pracownicy.iloc[1:4]       # wiersze 1–3 (koniec wyłączony)
+
+# Filtrowanie po warunku
+pracownicy[pracownicy["dzial"] == "IT"]
+pracownicy[pracownicy["pensja"] > 5000]
+pracownicy[(pracownicy["dzial"] == "IT") & (pracownicy["staz_lat"] > 2)]   # AND
+pracownicy[(pracownicy["dzial"] == "IT") | (pracownicy["dzial"] == "HR")]   # OR
+
+# Metoda query() — czytelniejszy zapis
+pracownicy.query('dzial == "IT" and staz_lat > 2')
+```
+
+```python
+# --- Wiersze I kolumny jednocześnie ---
+pracownicy.loc[pracownicy["pensja"] > 5000, ["imie", "pensja"]]
+```
+
+:::

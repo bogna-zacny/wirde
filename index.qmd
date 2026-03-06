@@ -1,0 +1,52 @@
+# Przedmowa {.unnumbered}
+
+Niniejszy podręcznik powstał z myślą o studentach, którzy chcą nauczyć się pracy z danymi przy użyciu nowoczesnych narzędzi programistycznych — bez konieczności wcześniejszego doświadczenia w programowaniu.
+
+## Dla kogo jest ta książka?
+
+Materiał jest skierowany do osób, które:
+
+- dobrze radzą sobie z Excelem i rozumieją podstawowe operacje na danych tabelarycznych,
+- nie mają doświadczenia z językami programowania,
+- chcą nauczyć się **R** lub **Pythona** (lub obu) do analizy i wizualizacji danych ekonomicznych,
+- będą tworzyć raporty analityczne w **Quarto**.
+
+## Jak korzystać z podręcznika?
+
+Każdy rozdział omawia najpierw koncepcję ogólnie, a następnie pokazuje jej realizację w obu językach — w osobnych zakładkach. Nie musisz uczyć się obu języków jednocześnie. Wybierz jeden i konsekwentnie śledź jego zakładkę.
+
+::: {.callout-tip}
+## Analogia do Excela
+
+Przez cały podręcznik odwołujemy się do Excela jako punktu odniesienia. Kluczowa tabela porównań:
+
+| Excel | R | Python |
+|-------|---|--------|
+| Arkusz kalkulacyjny | `data.frame` / `tibble` | `DataFrame` (pandas) |
+| Kolumna | wektor | seria (pandas) |
+| Komórka | element wektora | element serii |
+| Formuła w kolumnie | operacja na wektorze | operacja na kolumnie |
+| Filtr | `filter()` | `query()` / indeksowanie |
+| Tabela przestawna | `group_by()` + `summarise()` | `groupby()` + `agg()` |
+| Wykres | `ggplot2` | `matplotlib` / `seaborn` |
+:::
+
+## Struktura podręcznika
+
+Podręcznik podzielony jest na dwie części:
+
+**Część I — Podstawy języków i pracy z danymi**
+
+Obejmuje niezbędne minimum programistyczne: środowisko pracy, typy danych, wektory, ramki danych, filtrowanie, transformację, braki danych, statystyki opisowe.
+
+**Część II — Wizualizacja danych** *(w przygotowaniu)*
+
+Tworzenie profesjonalnych wizualizacaji danych.
+
+**Część III — Raportowanie w Quarto** *(w przygotowaniu)*
+
+Tworzenie profesjonalnych raportów, dokumentów i prezentacji z wykorzystaniem Quarto.
+
+---
+
+*Wizualizacja i raportowanie danych ekonomicznych*

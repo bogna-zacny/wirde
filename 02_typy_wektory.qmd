@@ -1,0 +1,196 @@
+# Typy danych i wektory {#sec-types}
+
+Zanim przejdziemy do tabel, poznajmy cegiełki, z których są zbudowane — podstawowe typy danych i wektory. To odpowiednik pojedynczej komórki i pojedynczej kolumny arkusza kalkulacyjnego.
+
+## Podstawowe typy danych
+
+Każda wartość w R i Pythonie ma swój typ. Typ decyduje o tym, jakie operacje można na wartości wykonać.
+
+::: {.panel-tabset}
+
+## R
+
+```{r}
+# Liczby całkowite i rzeczywiste
+wiek <- 25L          # integer (L oznacza "całkowity")
+wzrost <- 175.5      # numeric (domyślny typ liczbowy)
+
+# Tekst (łańcuch znaków)
+imie <- "Anna"
+
+# Wartości logiczne
+czy_student <- TRUE
+czy_pracuje <- FALSE
+
+# Brak danych
+wynik <- NA          # odpowiednik pustej komórki w Excelu
+
+# Sprawdzenie typu
+class(wiek)
+class(imie)
+class(czy_student)
+```
+
+```{r}
+# Konwersja typów
+as.numeric("3.14")   # tekst → liczba
+as.character(42)     # liczba → tekst
+as.logical(1)        # liczba → logiczna (1 = TRUE, 0 = FALSE)
+```
+
+## Python
+
+```python
+# Liczby całkowite i rzeczywiste
+wiek = 25            # int
+wzrost = 175.5       # float
+
+# Tekst (łańcuch znaków)
+imie = "Anna"        # str
+
+# Wartości logiczne
+czy_student = True   # bool (uwaga: wielka litera T!)
+czy_pracuje = False
+
+# Brak danych
+import numpy as np
+wynik = None         # ogólny brak wartości w Pythonie
+wynik_num = np.nan   # brak wartości numerycznej (używany w pandas)
+
+# Sprawdzenie typu
+print(type(wiek))
+print(type(imie))
+print(type(czy_student))
+```
+
+```python
+# Konwersja typów
+float("3.14")        # tekst → liczba
+str(42)              # liczba → tekst
+bool(1)              # liczba → logiczna (1 = True, 0 = False)
+```
+
+:::
+
+## Wektory — pierwsza kolumna danych
+
+::: {.callout-note}
+## Czym jest wektor?
+
+Wyobraź sobie jedną kolumnę Excela. W R taka kolumna to **wektor** — sekwencja wartości tego samego typu. W Pythonie (pandas) to **Series**, a w NumPy — **array**. To fundamentalna jednostka danych, z której buduje się tabele.
+:::
+
+::: {.panel-tabset}
+
+## R
+
+```{r}
+# Tworzenie wektora — funkcja c() (od "combine")
+pensje <- c(4500, 5200, 4800, 6100, 5500)
+miasta <- c("Warszawa", "Kraków", "Gdańsk", "Poznań", "Wrocław")
+
+# Długość wektora
+length(pensje)
+
+# Podstawowe statystyki — operacje na CAŁYM wektorze jednocześnie
+mean(pensje)      # średnia
+median(pensje)    # mediana
+sum(pensje)       # suma
+max(pensje)       # maksimum
+min(pensje)       # minimum
+```
+
+```{r}
+# Operacje wektorowe — R działa na całym wektorze, nie na elementach!
+# To jak wpisanie formuły w Excelu do całej kolumny naraz.
+pensje_po_podwyzce <- pensje * 1.10    # każda pensja +10%
+pensje_w_tys <- pensje / 1000          # przeliczenie na tysiące
+
+pensje_po_podwyzce
+pensje_w_tys
+```
+
+## Python
+
+```python
+import numpy as np
+
+# Tworzenie tablicy NumPy (odpowiednik wektora R)
+pensje = np.array([4500, 5200, 4800, 6100, 5500])
+miasta = np.array(["Warszawa", "Kraków", "Gdańsk", "Poznań", "Wrocław"])
+
+# Długość
+len(pensje)
+
+# Podstawowe statystyki
+np.mean(pensje)      # średnia
+np.median(pensje)    # mediana
+np.sum(pensje)       # suma
+np.max(pensje)       # maksimum
+np.min(pensje)       # minimum
+```
+
+```python
+# Operacje wektorowe — tak samo jak R, działa na całej tablicy naraz
+pensje_po_podwyzce = pensje * 1.10    # każda pensja +10%
+pensje_w_tys = pensje / 1000          # przeliczenie na tysiące
+
+print(pensje_po_podwyzce)
+print(pensje_w_tys)
+```
+
+:::
+
+## Indeksowanie — wybieranie elementów
+
+::: {.callout-important}
+## Kluczowa różnica: od której liczby zaczynamy?
+
+**R** liczy elementy od **1** — tak jak Excel i większość języków statystycznych.
+
+**Python** liczy elementy od **0** — tak jak większość języków programowania ogólnego.
+
+To jedna z najczęstszych przyczyn błędów przy przełączaniu się między językami!
+:::
+
+::: {.panel-tabset}
+
+## R
+
+```{r}
+pensje <- c(4500, 5200, 4800, 6100, 5500)
+
+# Wybieranie po indeksie — R liczy od 1
+pensje[1]          # pierwsza pensja → 4500
+pensje[3]          # trzecia pensja  → 4800
+pensje[c(1, 3, 5)] # pierwsza, trzecia i piąta
+pensje[2:4]        # od drugiej do czwartej (włącznie)
+pensje[length(pensje)]  # ostatnia (jak Ctrl+End w Excelu)
+```
+
+```{r}
+# Indeksowanie logiczne — wybieranie po warunku
+pensje[pensje > 5000]          # tylko pensje powyżej 5000
+pensje[pensje > mean(pensje)]  # powyżej średniej
+```
+
+## Python
+
+```python
+pensje = np.array([4500, 5200, 4800, 6100, 5500])
+
+# Wybieranie po indeksie — Python liczy od 0!
+pensje[0]           # pierwsza pensja → 4500 (indeks 0!)
+pensje[2]           # trzecia pensja  → 4800 (indeks 2!)
+pensje[[0, 2, 4]]   # pierwsza, trzecia i piąta
+pensje[1:4]         # od drugiej do czwartej (koniec WYŁĄCZONY!)
+pensje[-1]          # ostatnia (ujemny indeks)
+```
+
+```python
+# Indeksowanie logiczne — wybieranie po warunku
+pensje[pensje > 5000]           # tylko pensje powyżej 5000
+pensje[pensje > np.mean(pensje)] # powyżej średniej
+```
+
+:::

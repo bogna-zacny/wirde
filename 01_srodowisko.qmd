@@ -1,0 +1,126 @@
+# Środowisko pracy {#sec-env}
+
+Zanim zaczniemy pracę z danymi, musimy przygotować odpowiednie środowisko — zainstalować język, edytor i niezbędne pakiety. To jednorazowy koszt, który procentuje przez cały kurs.
+
+## Jak uruchamiać kod?
+
+::: {.panel-tabset}
+
+## R
+
+**Opcja 1 — RStudio (zalecane)**
+
+1. Pobierz R ze strony [cran.r-project.org](https://cran.r-project.org/)
+2. Pobierz RStudio ze strony [posit.co/download/rstudio-desktop](https://posit.co/download/rstudio-desktop/)
+3. W RStudio utwórz nowy skrypt: *File → New File → R Script* (lub Quarto Document)
+4. Wpisz kod i uruchom go skrótem **Ctrl+Enter** (jeden wiersz) lub **Ctrl+Shift+Enter** (cały skrypt)
+
+**Opcja 2 — Quarto w RStudio**
+
+Pliki `.qmd` uruchamiasz klikając **▶ Run** przy każdym bloku kodu lub **Render** na górze, żeby wygenerować cały raport.
+
+## Python
+
+**Opcja 1 — VS Code (zalecane)**
+
+1. Pobierz Python ze strony [python.org/downloads](https://www.python.org/downloads/)
+2. Pobierz VS Code ze strony [code.visualstudio.com](https://code.visualstudio.com/)
+3. Zainstaluj rozszerzenie *Python* i *Jupyter* w VS Code
+4. Otwórz folder, utwórz plik `.py` lub `.ipynb` (notatnik Jupyter)
+
+**Opcja 2 — Jupyter Notebook / JupyterLab**
+
+```bash
+# Instalacja przez pip (w terminalu/wierszu poleceń):
+pip install jupyterlab pandas matplotlib seaborn
+
+# Uruchomienie:
+jupyter lab
+```
+
+**Opcja 3 — Quarto w VS Code**
+
+Analogicznie do R — pliki `.qmd` obsługują zarówno R, jak i Python.
+
+:::
+
+## Instalacja pakietów
+
+Pakiety to gotowe rozszerzenia języka — nie musisz pisać wszystkiego od zera. Instaluje się je raz, a wczytuje na początku każdej sesji pracy.
+
+::: {.panel-tabset}
+
+## R
+
+```r
+# Instalacja (tylko raz, np. w konsoli RStudio):
+install.packages("tidyverse")   # zestaw pakietów do analizy danych
+install.packages("readxl")      # wczytywanie plików Excel
+install.packages("patchwork")   # składanie wielu wykresów
+
+# Wczytanie do bieżącej sesji (na początku każdego skryptu):
+library(tidyverse)
+library(readxl)
+```
+
+::: {.callout-tip}
+`tidyverse` to tzw. meta-pakiet — instaluje i wczytuje kilkanaście pakietów naraz: `dplyr` (manipulacja danymi), `ggplot2` (wykresy), `readr` (wczytywanie CSV), `tidyr` (przekształcanie tabel) i inne.
+:::
+
+## Python
+
+```bash
+# Instalacja (tylko raz, w terminalu/wierszu poleceń):
+pip install pandas matplotlib seaborn openpyxl
+```
+
+```python
+# Import na początku każdego skryptu/notatnika:
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+```
+
+::: {.callout-tip}
+`pandas` to odpowiednik `dplyr` + `readr` z R. `seaborn` to odpowiednik `ggplot2` (uproszczony). `matplotlib` jest bardziej niskopoziomowy — daje więcej kontroli nad detalami wykresu. `numpy` obsługuje obliczenia numeryczne.
+:::
+
+:::
+
+## Pierwsze kroki — sprawdzenie instalacji
+
+Po instalacji warto sprawdzić, czy wszystko działa:
+
+::: {.panel-tabset}
+
+## R
+
+```{r}
+# Wczytaj pakiety
+library(tidyverse)
+
+# Sprawdź wersje
+packageVersion("dplyr")
+packageVersion("ggplot2")
+
+# Szybki test — wbudowany zbiór danych
+head(mtcars)
+```
+
+## Python
+
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Sprawdź wersje
+print(f"pandas: {pd.__version__}")
+
+# Szybki test — wbudowany zbiór danych
+import seaborn as sns
+tips = sns.load_dataset("tips")
+print(tips.head())
+```
+
+:::

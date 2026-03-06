@@ -1,0 +1,62 @@
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: "Wizualizacja i raportowanie danych ekonomicznych"
+  subtitle: "Wprowadzenie do R i Pythona"
+  author: ""
+  date: today
+  date-format: "MMMM YYYY"
+  language: pl
+
+  chapters:
+    - index.qmd
+    - part: "Część I — Podstawy języków i pracy z danymi"
+      chapters:
+        - 01_srodowisko.qmd
+        - 02_typy_wektory.qmd
+        - 03_ramki_danych.qmd
+        - 04_transformacja.qmd
+        - 05_braki_statystyki.qmd
+        # - 06_wykresy_podstawowe.qmd
+        # - 07_wykresy_zaawansowane.qmd
+        # - 08_podsumowanie.qmd
+
+  sidebar:
+    style: docked
+    search: true
+
+  navbar:
+    right:
+      - icon: github
+        href: https://github.com
+
+  page-footer:
+    left: "Wizualizacja i raportowanie danych ekonomicznych"
+    right:
+      - icon: github
+        href: https://github.com
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    toc-title: "Spis treści"
+    code-fold: false
+    highlight-style: github
+    smooth-scroll: true
+    number-sections: true
+    number-depth: 2
+    css: custom.css
+
+
+execute:
+  warning: false
+  message: false
+  echo: true
+
+knitr:
+  opts_chunk:
+    comment: "#>"

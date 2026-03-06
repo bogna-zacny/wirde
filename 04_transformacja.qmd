@@ -1,0 +1,234 @@
+# Transformacja danych {#sec-transform}
+
+Transformacja to przekształcanie surowych danych w formę użyteczną do analizy. Obejmuje tworzenie nowych kolumn, sortowanie, grupowanie, agregację i łączenie tabel.
+
+## Dodawanie i modyfikowanie kolumn
+
+::: {.panel-tabset}
+
+## R
+
+```{r}
+library(dplyr)
+
+pracownicy <- data.frame(
+  imie       = c("Anna", "Piotr", "Kasia", "Marek", "Zofia"),
+  pensja     = c(4500, 5200, 4800, 6100, 5500),
+  dzial      = c("IT", "Finanse", "IT", "HR", "Finanse"),
+  staz_lat   = c(3, 7, 2, 10, 5),
+  czy_menedz = c(FALSE, TRUE, FALSE, TRUE, FALSE)
+)
+
+# Dodanie nowych kolumn — mutate()
+pracownicy <- pracownicy |>
+  mutate(
+    pensja_netto  = pensja * 0.77,           # obliczenie
+    doswiadczony  = staz_lat >= 5,           # warunek logiczny
+    kategoria     = case_when(               # wiele warunków
+      pensja < 5000 ~ "junior",
+      pensja < 6000 ~ "mid",
+      TRUE          ~ "senior"
+    )
+  )
+
+pracownicy
+```
+
+```{r}
+# Usunięcie kolumny
+pracownicy <- pracownicy |>
+  select(-pensja_netto)
+
+# Zmiana nazwy kolumny
+pracownicy <- pracownicy |>
+  rename(lata_pracy = staz_lat)
+
+names(pracownicy)
+```
+
+## Python
+
+```python
+import pandas as pd
+import numpy as np
+
+pracownicy = pd.DataFrame({
+    "imie":       ["Anna", "Piotr", "Kasia", "Marek", "Zofia"],
+    "pensja":     [4500, 5200, 4800, 6100, 5500],
+    "dzial":      ["IT", "Finanse", "IT", "HR", "Finanse"],
+    "staz_lat":   [3, 7, 2, 10, 5],
+    "czy_menedz": [False, True, False, True, False]
+})
+
+# Dodanie nowych kolumn
+pracownicy["pensja_netto"] = pracownicy["pensja"] * 0.77     # obliczenie
+pracownicy["doswiadczony"] = pracownicy["staz_lat"] >= 5     # warunek logiczny
+
+# Wiele warunków — np.select()
+warunki  = [pracownicy["pensja"] < 5000, pracownicy["pensja"] < 6000]
+wartosci = ["junior", "mid"]
+pracownicy["kategoria"] = np.select(warunki, wartosci, default="senior")
+
+pracownicy
+```
+
+```python
+# Usunięcie kolumny
+pracownicy = pracownicy.drop(columns=["pensja_netto"])
+
+# Zmiana nazwy kolumny
+pracownicy = pracownicy.rename(columns={"staz_lat": "lata_pracy"})
+
+list(pracownicy.columns)
+```
+
+:::
+
+## Sortowanie
+
+::: {.panel-tabset}
+
+## R
+
+```{r}
+# Sortowanie rosnąco
+arrange(pracownicy, pensja)
+
+# Sortowanie malejąco
+arrange(pracownicy, desc(pensja))
+
+# Sortowanie po wielu kolumnach
+arrange(pracownicy, dzial, desc(pensja))
+```
+
+## Python
+
+```python
+# Sortowanie rosnąco
+pracownicy.sort_values("pensja")
+
+# Sortowanie malejąco
+pracownicy.sort_values("pensja", ascending=False)
+
+# Sortowanie po wielu kolumnach
+pracownicy.sort_values(["dzial", "pensja"], ascending=[True, False])
+```
+
+:::
+
+## Grupowanie i agregacja
+
+::: {.callout-note}
+## Analogia do Excela
+
+Grupowanie w R/Pythonie to odpowiednik **tabeli przestawnej** w Excelu — tylko że wynik to zwykła ramka danych, którą możesz dowolnie dalej przetwarzać.
+:::
+
+::: {.panel-tabset}
+
+## R
+
+```{r}
+# Podstawowa agregacja — średnia pensja według działu
+pracownicy |>
+  group_by(dzial) |>
+  summarise(
+    srednia_pensja = mean(pensja),
+    mediana_pensja = median(pensja),
+    liczba_osob    = n()
+  )
+```
+
+```{r}
+# Agregacja po wielu grupach
+pracownicy |>
+  group_by(dzial, kategoria) |>
+  summarise(
+    srednia  = mean(pensja),
+    min_pens = min(pensja),
+    max_pens = max(pensja),
+    .groups  = "drop"   # usuwa grupowanie po agregacji
+  ) |>
+  arrange(dzial, srednia)
+```
+
+## Python
+
+```python
+# Podstawowa agregacja
+pracownicy.groupby("dzial")["pensja"].agg(
+    srednia_pensja="mean",
+    mediana_pensja="median",
+    liczba_osob="count"
+).reset_index()
+```
+
+```python
+# Agregacja po wielu grupach
+(pracownicy
+ .groupby(["dzial", "kategoria"])
+ .agg(
+     srednia  = ("pensja", "mean"),
+     min_pens = ("pensja", "min"),
+     max_pens = ("pensja", "max")
+ )
+ .reset_index()
+ .sort_values(["dzial", "srednia"])
+)
+```
+
+:::
+
+## Łączenie tabel
+
+::: {.callout-note}
+## Analogia do Excela
+
+Łączenie tabel to odpowiednik funkcji **WYSZUKAJ.PIONOWO** (VLOOKUP) lub relacji w Power Pivot — ale bardziej elastyczne i odporne na błędy.
+:::
+
+::: {.panel-tabset}
+
+## R
+
+```{r}
+# Tabela z informacjami o działach
+dzialy <- data.frame(
+  dzial       = c("IT", "Finanse", "HR"),
+  budzet      = c(500000, 350000, 200000),
+  lokalizacja = c("Warszawa", "Kraków", "Warszawa")
+)
+
+# LEFT JOIN — wszyscy pracownicy + pasujące info o dziale
+left_join(pracownicy, dzialy, by = "dzial")
+```
+
+```{r}
+# INNER JOIN — tylko wiersze pasujące w obu tabelach
+inner_join(pracownicy, dzialy, by = "dzial")
+
+# Dostępne typy: left_join, right_join, inner_join, full_join
+```
+
+## Python
+
+```python
+# Tabela z informacjami o działach
+dzialy = pd.DataFrame({
+    "dzial":       ["IT", "Finanse", "HR"],
+    "budzet":      [500000, 350000, 200000],
+    "lokalizacja": ["Warszawa", "Kraków", "Warszawa"]
+})
+
+# LEFT JOIN
+pd.merge(pracownicy, dzialy, on="dzial", how="left")
+```
+
+```python
+# INNER JOIN
+pd.merge(pracownicy, dzialy, on="dzial", how="inner")
+
+# Dostępne typy: how="left", "right", "inner", "outer"
+```
+
+:::
