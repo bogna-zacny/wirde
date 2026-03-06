@@ -1,0 +1,262 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Wizualizacja i raportowanie danych ekonomicznych",
+    "section": "",
+    "text": "Przedmowa\nNiniejszy podręcznik powstał z myślą o studentach, którzy chcą nauczyć się pracy z danymi przy użyciu nowoczesnych narzędzi programistycznych — bez konieczności wcześniejszego doświadczenia w programowaniu.",
+    "crumbs": [
+      "Przedmowa"
+    ]
+  },
+  {
+    "objectID": "index.html#dla-kogo-jest-ta-książka",
+    "href": "index.html#dla-kogo-jest-ta-książka",
+    "title": "Wizualizacja i raportowanie danych ekonomicznych",
+    "section": "Dla kogo jest ta książka?",
+    "text": "Dla kogo jest ta książka?\nMateriał jest skierowany do osób, które:\n\ndobrze radzą sobie z Excelem i rozumieją podstawowe operacje na danych tabelarycznych,\nnie mają doświadczenia z językami programowania,\nchcą nauczyć się R lub Pythona (lub obu) do analizy i wizualizacji danych ekonomicznych,\nbędą tworzyć raporty analityczne w Quarto.",
+    "crumbs": [
+      "Przedmowa"
+    ]
+  },
+  {
+    "objectID": "index.html#jak-korzystać-z-podręcznika",
+    "href": "index.html#jak-korzystać-z-podręcznika",
+    "title": "Wizualizacja i raportowanie danych ekonomicznych",
+    "section": "Jak korzystać z podręcznika?",
+    "text": "Jak korzystać z podręcznika?\nKażdy rozdział omawia najpierw koncepcję ogólnie, a następnie pokazuje jej realizację w obu językach — w osobnych zakładkach. Nie musisz uczyć się obu języków jednocześnie. Wybierz jeden i konsekwentnie śledź jego zakładkę.\n\n\n\n\n\n\nAnalogia do Excela\n\n\n\nPrzez cały podręcznik odwołujemy się do Excela jako punktu odniesienia. Kluczowa tabela porównań:\n\n\n\n\n\n\n\n\nExcel\nR\nPython\n\n\n\n\nArkusz kalkulacyjny\ndata.frame / tibble\nDataFrame (pandas)\n\n\nKolumna\nwektor\nseria (pandas)\n\n\nKomórka\nelement wektora\nelement serii\n\n\nFormuła w kolumnie\noperacja na wektorze\noperacja na kolumnie\n\n\nFiltr\nfilter()\nquery() / indeksowanie\n\n\nTabela przestawna\ngroup_by() + summarise()\ngroupby() + agg()\n\n\nWykres\nggplot2\nmatplotlib / seaborn",
+    "crumbs": [
+      "Przedmowa"
+    ]
+  },
+  {
+    "objectID": "index.html#struktura-podręcznika",
+    "href": "index.html#struktura-podręcznika",
+    "title": "Wizualizacja i raportowanie danych ekonomicznych",
+    "section": "Struktura podręcznika",
+    "text": "Struktura podręcznika\nPodręcznik podzielony jest na dwie części:\nCzęść I — Podstawy języków i pracy z danymi\nObejmuje niezbędne minimum programistyczne: środowisko pracy, typy danych, wektory, ramki danych, filtrowanie, transformację, braki danych, statystyki opisowe.\nCzęść II — Wizualizacja danych (w przygotowaniu)\nTworzenie profesjonalnych wizualizacaji danych.\nCzęść III — Raportowanie w Quarto (w przygotowaniu)\nTworzenie profesjonalnych raportów, dokumentów i prezentacji z wykorzystaniem Quarto.\n\nWizualizacja i raportowanie danych ekonomicznych",
+    "crumbs": [
+      "Przedmowa"
+    ]
+  },
+  {
+    "objectID": "01_srodowisko.html",
+    "href": "01_srodowisko.html",
+    "title": "1  Środowisko pracy",
+    "section": "",
+    "text": "1.1 Jak uruchamiać kod?\nZanim zaczniemy pracę z danymi, musimy przygotować odpowiednie środowisko — zainstalować język, edytor i niezbędne pakiety. To jednorazowy koszt, który procentuje przez cały kurs.",
+    "crumbs": [
+      "Część I — Podstawy języków i pracy z danymi",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Środowisko pracy</span>"
+    ]
+  },
+  {
+    "objectID": "01_srodowisko.html#jak-uruchamiać-kod",
+    "href": "01_srodowisko.html#jak-uruchamiać-kod",
+    "title": "1  Środowisko pracy",
+    "section": "",
+    "text": "RPython\n\n\nOpcja 1 — RStudio (zalecane)\n\nPobierz R ze strony cran.r-project.org\nPobierz RStudio ze strony posit.co/download/rstudio-desktop\nW RStudio utwórz nowy skrypt: File → New File → R Script (lub Quarto Document)\nWpisz kod i uruchom go skrótem Ctrl+Enter (jeden wiersz) lub Ctrl+Shift+Enter (cały skrypt)\n\nOpcja 2 — Quarto w RStudio\nPliki .qmd uruchamiasz klikając ▶ Run przy każdym bloku kodu lub Render na górze, żeby wygenerować cały raport.\n\n\nOpcja 1 — VS Code (zalecane)\n\nPobierz Python ze strony python.org/downloads\nPobierz VS Code ze strony code.visualstudio.com\nZainstaluj rozszerzenie Python i Jupyter w VS Code\nOtwórz folder, utwórz plik .py lub .ipynb (notatnik Jupyter)\n\nOpcja 2 — Jupyter Notebook / JupyterLab\n# Instalacja przez pip (w terminalu/wierszu poleceń):\npip install jupyterlab pandas matplotlib seaborn\n\n# Uruchomienie:\njupyter lab\nOpcja 3 — Quarto w VS Code\nAnalogicznie do R — pliki .qmd obsługują zarówno R, jak i Python.",
+    "crumbs": [
+      "Część I — Podstawy języków i pracy z danymi",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Środowisko pracy</span>"
+    ]
+  },
+  {
+    "objectID": "01_srodowisko.html#instalacja-pakietów",
+    "href": "01_srodowisko.html#instalacja-pakietów",
+    "title": "1  Środowisko pracy",
+    "section": "1.2 Instalacja pakietów",
+    "text": "1.2 Instalacja pakietów\nPakiety to gotowe rozszerzenia języka — nie musisz pisać wszystkiego od zera. Instaluje się je raz, a wczytuje na początku każdej sesji pracy.\n\nRPython\n\n\n# Instalacja (tylko raz, np. w konsoli RStudio):\ninstall.packages(\"tidyverse\")   # zestaw pakietów do analizy danych\ninstall.packages(\"readxl\")      # wczytywanie plików Excel\ninstall.packages(\"patchwork\")   # składanie wielu wykresów\n\n# Wczytanie do bieżącej sesji (na początku każdego skryptu):\nlibrary(tidyverse)\nlibrary(readxl)\n\n\n\n\n\n\nTip\n\n\n\ntidyverse to tzw. meta-pakiet — instaluje i wczytuje kilkanaście pakietów naraz: dplyr (manipulacja danymi), ggplot2 (wykresy), readr (wczytywanie CSV), tidyr (przekształcanie tabel) i inne.\n\n\n\n\n# Instalacja (tylko raz, w terminalu/wierszu poleceń):\npip install pandas matplotlib seaborn openpyxl\n# Import na początku każdego skryptu/notatnika:\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n\n\n\n\n\n\nTip\n\n\n\npandas to odpowiednik dplyr + readr z R. seaborn to odpowiednik ggplot2 (uproszczony). matplotlib jest bardziej niskopoziomowy — daje więcej kontroli nad detalami wykresu. numpy obsługuje obliczenia numeryczne.",
+    "crumbs": [
+      "Część I — Podstawy języków i pracy z danymi",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Środowisko pracy</span>"
+    ]
+  },
+  {
+    "objectID": "01_srodowisko.html#pierwsze-kroki-sprawdzenie-instalacji",
+    "href": "01_srodowisko.html#pierwsze-kroki-sprawdzenie-instalacji",
+    "title": "1  Środowisko pracy",
+    "section": "1.3 Pierwsze kroki — sprawdzenie instalacji",
+    "text": "1.3 Pierwsze kroki — sprawdzenie instalacji\nPo instalacji warto sprawdzić, czy wszystko działa:\n\nRPython\n\n\n\n# Wczytaj pakiety\nlibrary(tidyverse)\n\n# Sprawdź wersje\npackageVersion(\"dplyr\")\n\n#&gt; [1] '1.1.4'\n\npackageVersion(\"ggplot2\")\n\n#&gt; [1] '4.0.0'\n\n# Szybki test — wbudowany zbiór danych\nhead(mtcars)\n\n#&gt;                    mpg cyl disp  hp drat    wt  qsec vs am gear carb\n#&gt; Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4\n#&gt; Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4\n#&gt; Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1\n#&gt; Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1\n#&gt; Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2\n#&gt; Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1\n\n\n\n\nimport pandas as pd\nimport matplotlib.pyplot as plt\n\n# Sprawdź wersje\nprint(f\"pandas: {pd.__version__}\")\n\n# Szybki test — wbudowany zbiór danych\nimport seaborn as sns\ntips = sns.load_dataset(\"tips\")\nprint(tips.head())",
+    "crumbs": [
+      "Część I — Podstawy języków i pracy z danymi",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Środowisko pracy</span>"
+    ]
+  },
+  {
+    "objectID": "02_typy_wektory.html",
+    "href": "02_typy_wektory.html",
+    "title": "2  Typy danych i wektory",
+    "section": "",
+    "text": "2.1 Podstawowe typy danych\nZanim przejdziemy do tabel, poznajmy cegiełki, z których są zbudowane — podstawowe typy danych i wektory. To odpowiednik pojedynczej komórki i pojedynczej kolumny arkusza kalkulacyjnego.\nKażda wartość w R i Pythonie ma swój typ. Typ decyduje o tym, jakie operacje można na wartości wykonać.",
+    "crumbs": [
+      "Część I — Podstawy języków i pracy z danymi",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Typy danych i wektory</span>"
+    ]
+  },
+  {
+    "objectID": "02_typy_wektory.html#podstawowe-typy-danych",
+    "href": "02_typy_wektory.html#podstawowe-typy-danych",
+    "title": "2  Typy danych i wektory",
+    "section": "",
+    "text": "RPython\n\n\n\n# Liczby całkowite i rzeczywiste\nwiek &lt;- 25L          # integer (L oznacza \"całkowity\")\nwzrost &lt;- 175.5      # numeric (domyślny typ liczbowy)\n\n# Tekst (łańcuch znaków)\nimie &lt;- \"Anna\"\n\n# Wartości logiczne\nczy_student &lt;- TRUE\nczy_pracuje &lt;- FALSE\n\n# Brak danych\nwynik &lt;- NA          # odpowiednik pustej komórki w Excelu\n\n# Sprawdzenie typu\nclass(wiek)\n\n#&gt; [1] \"integer\"\n\nclass(imie)\n\n#&gt; [1] \"character\"\n\nclass(czy_student)\n\n#&gt; [1] \"logical\"\n\n\n\n# Konwersja typów\nas.numeric(\"3.14\")   # tekst → liczba\n\n#&gt; [1] 3.14\n\nas.character(42)     # liczba → tekst\n\n#&gt; [1] \"42\"\n\nas.logical(1)        # liczba → logiczna (1 = TRUE, 0 = FALSE)\n\n#&gt; [1] TRUE\n\n\n\n\n# Liczby całkowite i rzeczywiste\nwiek = 25            # int\nwzrost = 175.5       # float\n\n# Tekst (łańcuch znaków)\nimie = \"Anna\"        # str\n\n# Wartości logiczne\nczy_student = True   # bool (uwaga: wielka litera T!)\nczy_pracuje = False\n\n# Brak danych\nimport numpy as np\nwynik = None         # ogólny brak wartości w Pythonie\nwynik_num = np.nan   # brak wartości numerycznej (używany w pandas)\n\n# Sprawdzenie typu\nprint(type(wiek))\nprint(type(imie))\nprint(type(czy_student))\n# Konwersja typów\nfloat(\"3.14\")        # tekst → liczba\nstr(42)              # liczba → tekst\nbool(1)              # liczba → logiczna (1 = True, 0 = False)",
+    "crumbs": [
+      "Część I — Podstawy języków i pracy z danymi",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Typy danych i wektory</span>"
+    ]
+  },
+  {
+    "objectID": "02_typy_wektory.html#wektory-pierwsza-kolumna-danych",
+    "href": "02_typy_wektory.html#wektory-pierwsza-kolumna-danych",
+    "title": "2  Typy danych i wektory",
+    "section": "2.2 Wektory — pierwsza kolumna danych",
+    "text": "2.2 Wektory — pierwsza kolumna danych\n\n\n\n\n\n\nCzym jest wektor?\n\n\n\nWyobraź sobie jedną kolumnę Excela. W R taka kolumna to wektor — sekwencja wartości tego samego typu. W Pythonie (pandas) to Series, a w NumPy — array. To fundamentalna jednostka danych, z której buduje się tabele.\n\n\n\nRPython\n\n\n\n# Tworzenie wektora — funkcja c() (od \"combine\")\npensje &lt;- c(4500, 5200, 4800, 6100, 5500)\nmiasta &lt;- c(\"Warszawa\", \"Kraków\", \"Gdańsk\", \"Poznań\", \"Wrocław\")\n\n# Długość wektora\nlength(pensje)\n\n#&gt; [1] 5\n\n# Podstawowe statystyki — operacje na CAŁYM wektorze jednocześnie\nmean(pensje)      # średnia\n\n#&gt; [1] 5220\n\nmedian(pensje)    # mediana\n\n#&gt; [1] 5200\n\nsum(pensje)       # suma\n\n#&gt; [1] 26100\n\nmax(pensje)       # maksimum\n\n#&gt; [1] 6100\n\nmin(pensje)       # minimum\n\n#&gt; [1] 4500\n\n\n\n# Operacje wektorowe — R działa na całym wektorze, nie na elementach!\n# To jak wpisanie formuły w Excelu do całej kolumny naraz.\npensje_po_podwyzce &lt;- pensje * 1.10    # każda pensja +10%\npensje_w_tys &lt;- pensje / 1000          # przeliczenie na tysiące\n\npensje_po_podwyzce\n\n#&gt; [1] 4950 5720 5280 6710 6050\n\npensje_w_tys\n\n#&gt; [1] 4.5 5.2 4.8 6.1 5.5\n\n\n\n\nimport numpy as np\n\n# Tworzenie tablicy NumPy (odpowiednik wektora R)\npensje = np.array([4500, 5200, 4800, 6100, 5500])\nmiasta = np.array([\"Warszawa\", \"Kraków\", \"Gdańsk\", \"Poznań\", \"Wrocław\"])\n\n# Długość\nlen(pensje)\n\n# Podstawowe statystyki\nnp.mean(pensje)      # średnia\nnp.median(pensje)    # mediana\nnp.sum(pensje)       # suma\nnp.max(pensje)       # maksimum\nnp.min(pensje)       # minimum\n# Operacje wektorowe — tak samo jak R, działa na całej tablicy naraz\npensje_po_podwyzce = pensje * 1.10    # każda pensja +10%\npensje_w_tys = pensje / 1000          # przeliczenie na tysiące\n\nprint(pensje_po_podwyzce)\nprint(pensje_w_tys)",
+    "crumbs": [
+      "Część I — Podstawy języków i pracy z danymi",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Typy danych i wektory</span>"
+    ]
+  },
+  {
+    "objectID": "02_typy_wektory.html#indeksowanie-wybieranie-elementów",
+    "href": "02_typy_wektory.html#indeksowanie-wybieranie-elementów",
+    "title": "2  Typy danych i wektory",
+    "section": "2.3 Indeksowanie — wybieranie elementów",
+    "text": "2.3 Indeksowanie — wybieranie elementów\n\n\n\n\n\n\nKluczowa różnica: od której liczby zaczynamy?\n\n\n\nR liczy elementy od 1 — tak jak Excel i większość języków statystycznych.\nPython liczy elementy od 0 — tak jak większość języków programowania ogólnego.\nTo jedna z najczęstszych przyczyn błędów przy przełączaniu się między językami!\n\n\n\nRPython\n\n\n\npensje &lt;- c(4500, 5200, 4800, 6100, 5500)\n\n# Wybieranie po indeksie — R liczy od 1\npensje[1]          # pierwsza pensja → 4500\n\n#&gt; [1] 4500\n\npensje[3]          # trzecia pensja  → 4800\n\n#&gt; [1] 4800\n\npensje[c(1, 3, 5)] # pierwsza, trzecia i piąta\n\n#&gt; [1] 4500 4800 5500\n\npensje[2:4]        # od drugiej do czwartej (włącznie)\n\n#&gt; [1] 5200 4800 6100\n\npensje[length(pensje)]  # ostatnia (jak Ctrl+End w Excelu)\n\n#&gt; [1] 5500\n\n\n\n# Indeksowanie logiczne — wybieranie po warunku\npensje[pensje &gt; 5000]          # tylko pensje powyżej 5000\n\n#&gt; [1] 5200 6100 5500\n\npensje[pensje &gt; mean(pensje)]  # powyżej średniej\n\n#&gt; [1] 6100 5500\n\n\n\n\npensje = np.array([4500, 5200, 4800, 6100, 5500])\n\n# Wybieranie po indeksie — Python liczy od 0!\npensje[0]           # pierwsza pensja → 4500 (indeks 0!)\npensje[2]           # trzecia pensja  → 4800 (indeks 2!)\npensje[[0, 2, 4]]   # pierwsza, trzecia i piąta\npensje[1:4]         # od drugiej do czwartej (koniec WYŁĄCZONY!)\npensje[-1]          # ostatnia (ujemny indeks)\n# Indeksowanie logiczne — wybieranie po warunku\npensje[pensje &gt; 5000]           # tylko pensje powyżej 5000\npensje[pensje &gt; np.mean(pensje)] # powyżej średniej",
+    "crumbs": [
+      "Część I — Podstawy języków i pracy z danymi",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Typy danych i wektory</span>"
+    ]
+  },
+  {
+    "objectID": "03_ramki_danych.html",
+    "href": "03_ramki_danych.html",
+    "title": "3  Ramki danych",
+    "section": "",
+    "text": "3.1 Tworzenie ramki danych\nRamka danych to serce analizy — odpowiednik arkusza kalkulacyjnego Excel. Każda kolumna to wektor (może mieć inny typ danych), każdy wiersz to jedna obserwacja (np. jeden pracownik, jeden kraj, jeden rok).",
+    "crumbs": [
+      "Część I — Podstawy języków i pracy z danymi",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Ramki danych</span>"
+    ]
+  },
+  {
+    "objectID": "03_ramki_danych.html#tworzenie-ramki-danych",
+    "href": "03_ramki_danych.html#tworzenie-ramki-danych",
+    "title": "3  Ramki danych",
+    "section": "",
+    "text": "RPython\n\n\n\nlibrary(dplyr)\n\n# Tworzenie ramki danych ręcznie\npracownicy &lt;- data.frame(\n  imie       = c(\"Anna\", \"Piotr\", \"Kasia\", \"Marek\", \"Zofia\"),\n  pensja     = c(4500, 5200, 4800, 6100, 5500),\n  dzial      = c(\"IT\", \"Finanse\", \"IT\", \"HR\", \"Finanse\"),\n  staz_lat   = c(3, 7, 2, 10, 5),\n  czy_menedz = c(FALSE, TRUE, FALSE, TRUE, FALSE)\n)\n\npracownicy\n\n#&gt;    imie pensja   dzial staz_lat czy_menedz\n#&gt; 1  Anna   4500      IT        3      FALSE\n#&gt; 2 Piotr   5200 Finanse        7       TRUE\n#&gt; 3 Kasia   4800      IT        2      FALSE\n#&gt; 4 Marek   6100      HR       10       TRUE\n#&gt; 5 Zofia   5500 Finanse        5      FALSE\n\n\n\n# Podstawowe informacje o ramce\nnrow(pracownicy)    # liczba wierszy\n\n#&gt; [1] 5\n\nncol(pracownicy)    # liczba kolumn\n\n#&gt; [1] 5\n\ndim(pracownicy)     # wymiary (wiersze × kolumny)\n\n#&gt; [1] 5 5\n\nnames(pracownicy)   # nazwy kolumn\n\n#&gt; [1] \"imie\"       \"pensja\"     \"dzial\"      \"staz_lat\"   \"czy_menedz\"\n\nstr(pracownicy)     # struktura — typy każdej kolumny\n\n#&gt; 'data.frame':    5 obs. of  5 variables:\n#&gt;  $ imie      : chr  \"Anna\" \"Piotr\" \"Kasia\" \"Marek\" ...\n#&gt;  $ pensja    : num  4500 5200 4800 6100 5500\n#&gt;  $ dzial     : chr  \"IT\" \"Finanse\" \"IT\" \"HR\" ...\n#&gt;  $ staz_lat  : num  3 7 2 10 5\n#&gt;  $ czy_menedz: logi  FALSE TRUE FALSE TRUE FALSE\n\n\n\n\nimport pandas as pd\n\n# Tworzenie ramki danych ręcznie\npracownicy = pd.DataFrame({\n    \"imie\":       [\"Anna\", \"Piotr\", \"Kasia\", \"Marek\", \"Zofia\"],\n    \"pensja\":     [4500, 5200, 4800, 6100, 5500],\n    \"dzial\":      [\"IT\", \"Finanse\", \"IT\", \"HR\", \"Finanse\"],\n    \"staz_lat\":   [3, 7, 2, 10, 5],\n    \"czy_menedz\": [False, True, False, True, False]\n})\n\npracownicy\n# Podstawowe informacje o ramce\nlen(pracownicy)            # liczba wierszy\nlen(pracownicy.columns)    # liczba kolumn\npracownicy.shape           # wymiary (wiersze, kolumny) jako krotka\npracownicy.columns         # nazwy kolumn\npracownicy.dtypes          # typy kolumn\npracownicy.info()          # szczegółowe informacje zbiorczo",
+    "crumbs": [
+      "Część I — Podstawy języków i pracy z danymi",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Ramki danych</span>"
+    ]
+  },
+  {
+    "objectID": "03_ramki_danych.html#wczytywanie-danych-z-pliku",
+    "href": "03_ramki_danych.html#wczytywanie-danych-z-pliku",
+    "title": "3  Ramki danych",
+    "section": "3.2 Wczytywanie danych z pliku",
+    "text": "3.2 Wczytywanie danych z pliku\nW praktyce rzadko tworzymy dane ręcznie — najczęściej wczytujemy je z pliku CSV lub Excel.\n\nRPython\n\n\nlibrary(readr)\nlibrary(readxl)\n\n# Wczytanie pliku CSV (separator przecinek, domyślny)\ndane &lt;- read_csv(\"dane.csv\")\n\n# Wczytanie CSV z polskim formatem (separator średnik, przecinek dziesiętny)\ndane &lt;- read_csv2(\"dane_pl.csv\")\n\n# Wczytanie z Excela\ndane &lt;- read_excel(\"dane.xlsx\", sheet = \"Arkusz1\")\n\n# Pierwsze spojrzenie na dane\nhead(dane)        # pierwsze 6 wierszy\ntail(dane)        # ostatnie 6 wierszy\nglimpse(dane)     # kompaktowy przegląd struktury\nsummary(dane)     # statystyki opisowe\n\n\n\n\n\n\nTip\n\n\n\nread_csv() (z pakietu readr) jest szybsze i nowocześniejsze niż bazowe read.csv(). Automatycznie rozpoznaje typy kolumn i obsługuje polskie znaki.\n\n\n\n\nimport pandas as pd\n\n# Wczytanie pliku CSV (separator przecinek, domyślny)\ndane = pd.read_csv(\"dane.csv\")\n\n# Wczytanie CSV z polskim formatem (separator średnik, przecinek dziesiętny)\ndane = pd.read_csv(\"dane_pl.csv\", sep=\";\", decimal=\",\")\n\n# Wczytanie z Excela (wymaga pakietu openpyxl)\ndane = pd.read_excel(\"dane.xlsx\", sheet_name=\"Arkusz1\")\n\n# Pierwsze spojrzenie na dane\ndane.head()       # pierwsze 5 wierszy\ndane.tail()       # ostatnie 5 wierszy\ndane.info()       # typy kolumn i liczba braków\ndane.describe()   # statystyki opisowe zmiennych liczbowych",
+    "crumbs": [
+      "Część I — Podstawy języków i pracy z danymi",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Ramki danych</span>"
+    ]
+  },
+  {
+    "objectID": "03_ramki_danych.html#wybieranie-kolumn-i-wierszy",
+    "href": "03_ramki_danych.html#wybieranie-kolumn-i-wierszy",
+    "title": "3  Ramki danych",
+    "section": "3.3 Wybieranie kolumn i wierszy",
+    "text": "3.3 Wybieranie kolumn i wierszy\n\n\n\n\n\n\nAnalogia do Excela\n\n\n\nWybieranie danych to jak używanie filtrów i funkcji INDEKS/PODAJ.POZYCJĘ — tylko znacznie wygodniejsze i szybsze.\n\n\n\nRPython\n\n\n\n# --- Wybieranie kolumn ---\n\n# Jedna kolumna (zwraca wektor)\npracownicy$pensja\n\n#&gt; [1] 4500 5200 4800 6100 5500\n\npracownicy[[\"pensja\"]]\n\n#&gt; [1] 4500 5200 4800 6100 5500\n\n# Wiele kolumn (zwraca ramkę danych)\nselect(pracownicy, imie, pensja)\n\n#&gt;    imie pensja\n#&gt; 1  Anna   4500\n#&gt; 2 Piotr   5200\n#&gt; 3 Kasia   4800\n#&gt; 4 Marek   6100\n#&gt; 5 Zofia   5500\n\nselect(pracownicy, -czy_menedz)    # wszystkie kolumny OPRÓCZ tej\n\n#&gt;    imie pensja   dzial staz_lat\n#&gt; 1  Anna   4500      IT        3\n#&gt; 2 Piotr   5200 Finanse        7\n#&gt; 3 Kasia   4800      IT        2\n#&gt; 4 Marek   6100      HR       10\n#&gt; 5 Zofia   5500 Finanse        5\n\n\n\n# --- Wybieranie wierszy ---\n\n# Konkretne wiersze po numerze\npracownicy[1, ]      # wiersz 1\n\n#&gt;   imie pensja dzial staz_lat czy_menedz\n#&gt; 1 Anna   4500    IT        3      FALSE\n\npracownicy[2:4, ]    # wiersze 2–4\n\n#&gt;    imie pensja   dzial staz_lat czy_menedz\n#&gt; 2 Piotr   5200 Finanse        7       TRUE\n#&gt; 3 Kasia   4800      IT        2      FALSE\n#&gt; 4 Marek   6100      HR       10       TRUE\n\n# Filtrowanie po warunku\nfilter(pracownicy, dzial == \"IT\")\n\n#&gt;    imie pensja dzial staz_lat czy_menedz\n#&gt; 1  Anna   4500    IT        3      FALSE\n#&gt; 2 Kasia   4800    IT        2      FALSE\n\nfilter(pracownicy, pensja &gt; 5000)\n\n#&gt;    imie pensja   dzial staz_lat czy_menedz\n#&gt; 1 Piotr   5200 Finanse        7       TRUE\n#&gt; 2 Marek   6100      HR       10       TRUE\n#&gt; 3 Zofia   5500 Finanse        5      FALSE\n\nfilter(pracownicy, dzial == \"IT\" & staz_lat &gt; 2)   # oba warunki (AND)\n\n#&gt;   imie pensja dzial staz_lat czy_menedz\n#&gt; 1 Anna   4500    IT        3      FALSE\n\nfilter(pracownicy, dzial == \"IT\" | dzial == \"HR\")   # jeden z warunków (OR)\n\n#&gt;    imie pensja dzial staz_lat czy_menedz\n#&gt; 1  Anna   4500    IT        3      FALSE\n#&gt; 2 Kasia   4800    IT        2      FALSE\n#&gt; 3 Marek   6100    HR       10       TRUE\n\n\n\n# --- Wiersze I kolumny jednocześnie (pipe operator) ---\npracownicy |&gt;\n  filter(pensja &gt; 5000) |&gt;\n  select(imie, pensja)\n\n#&gt;    imie pensja\n#&gt; 1 Piotr   5200\n#&gt; 2 Marek   6100\n#&gt; 3 Zofia   5500\n\n\n\n\n# --- Wybieranie kolumn ---\n\n# Jedna kolumna (zwraca Series)\npracownicy[\"pensja\"]\n\n# Wiele kolumn (zwraca DataFrame)\npracownicy[[\"imie\", \"pensja\"]]\npracownicy.drop(columns=[\"czy_menedz\"])    # wszystkie OPRÓCZ tej\n# --- Wybieranie wierszy ---\n\n# Konkretne wiersze po pozycji (iloc — pamiętamy: od 0!)\npracownicy.iloc[0]         # wiersz 0 (pierwszy)\npracownicy.iloc[1:4]       # wiersze 1–3 (koniec wyłączony)\n\n# Filtrowanie po warunku\npracownicy[pracownicy[\"dzial\"] == \"IT\"]\npracownicy[pracownicy[\"pensja\"] &gt; 5000]\npracownicy[(pracownicy[\"dzial\"] == \"IT\") & (pracownicy[\"staz_lat\"] &gt; 2)]   # AND\npracownicy[(pracownicy[\"dzial\"] == \"IT\") | (pracownicy[\"dzial\"] == \"HR\")]   # OR\n\n# Metoda query() — czytelniejszy zapis\npracownicy.query('dzial == \"IT\" and staz_lat &gt; 2')\n# --- Wiersze I kolumny jednocześnie ---\npracownicy.loc[pracownicy[\"pensja\"] &gt; 5000, [\"imie\", \"pensja\"]]",
+    "crumbs": [
+      "Część I — Podstawy języków i pracy z danymi",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Ramki danych</span>"
+    ]
+  },
+  {
+    "objectID": "04_transformacja.html",
+    "href": "04_transformacja.html",
+    "title": "4  Transformacja danych",
+    "section": "",
+    "text": "4.1 Dodawanie i modyfikowanie kolumn\nTransformacja to przekształcanie surowych danych w formę użyteczną do analizy. Obejmuje tworzenie nowych kolumn, sortowanie, grupowanie, agregację i łączenie tabel.",
+    "crumbs": [
+      "Część I — Podstawy języków i pracy z danymi",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Transformacja danych</span>"
+    ]
+  },
+  {
+    "objectID": "04_transformacja.html#dodawanie-i-modyfikowanie-kolumn",
+    "href": "04_transformacja.html#dodawanie-i-modyfikowanie-kolumn",
+    "title": "4  Transformacja danych",
+    "section": "",
+    "text": "RPython\n\n\n\nlibrary(dplyr)\n\npracownicy &lt;- data.frame(\n  imie       = c(\"Anna\", \"Piotr\", \"Kasia\", \"Marek\", \"Zofia\"),\n  pensja     = c(4500, 5200, 4800, 6100, 5500),\n  dzial      = c(\"IT\", \"Finanse\", \"IT\", \"HR\", \"Finanse\"),\n  staz_lat   = c(3, 7, 2, 10, 5),\n  czy_menedz = c(FALSE, TRUE, FALSE, TRUE, FALSE)\n)\n\n# Dodanie nowych kolumn — mutate()\npracownicy &lt;- pracownicy |&gt;\n  mutate(\n    pensja_netto  = pensja * 0.77,           # obliczenie\n    doswiadczony  = staz_lat &gt;= 5,           # warunek logiczny\n    kategoria     = case_when(               # wiele warunków\n      pensja &lt; 5000 ~ \"junior\",\n      pensja &lt; 6000 ~ \"mid\",\n      TRUE          ~ \"senior\"\n    )\n  )\n\npracownicy\n\n#&gt;    imie pensja   dzial staz_lat czy_menedz pensja_netto doswiadczony kategoria\n#&gt; 1  Anna   4500      IT        3      FALSE         3465        FALSE    junior\n#&gt; 2 Piotr   5200 Finanse        7       TRUE         4004         TRUE       mid\n#&gt; 3 Kasia   4800      IT        2      FALSE         3696        FALSE    junior\n#&gt; 4 Marek   6100      HR       10       TRUE         4697         TRUE    senior\n#&gt; 5 Zofia   5500 Finanse        5      FALSE         4235         TRUE       mid\n\n\n\n# Usunięcie kolumny\npracownicy &lt;- pracownicy |&gt;\n  select(-pensja_netto)\n\n# Zmiana nazwy kolumny\npracownicy &lt;- pracownicy |&gt;\n  rename(lata_pracy = staz_lat)\n\nnames(pracownicy)\n\n#&gt; [1] \"imie\"         \"pensja\"       \"dzial\"        \"lata_pracy\"   \"czy_menedz\"  \n#&gt; [6] \"doswiadczony\" \"kategoria\"\n\n\n\n\nimport pandas as pd\nimport numpy as np\n\npracownicy = pd.DataFrame({\n    \"imie\":       [\"Anna\", \"Piotr\", \"Kasia\", \"Marek\", \"Zofia\"],\n    \"pensja\":     [4500, 5200, 4800, 6100, 5500],\n    \"dzial\":      [\"IT\", \"Finanse\", \"IT\", \"HR\", \"Finanse\"],\n    \"staz_lat\":   [3, 7, 2, 10, 5],\n    \"czy_menedz\": [False, True, False, True, False]\n})\n\n# Dodanie nowych kolumn\npracownicy[\"pensja_netto\"] = pracownicy[\"pensja\"] * 0.77     # obliczenie\npracownicy[\"doswiadczony\"] = pracownicy[\"staz_lat\"] &gt;= 5     # warunek logiczny\n\n# Wiele warunków — np.select()\nwarunki  = [pracownicy[\"pensja\"] &lt; 5000, pracownicy[\"pensja\"] &lt; 6000]\nwartosci = [\"junior\", \"mid\"]\npracownicy[\"kategoria\"] = np.select(warunki, wartosci, default=\"senior\")\n\npracownicy\n# Usunięcie kolumny\npracownicy = pracownicy.drop(columns=[\"pensja_netto\"])\n\n# Zmiana nazwy kolumny\npracownicy = pracownicy.rename(columns={\"staz_lat\": \"lata_pracy\"})\n\nlist(pracownicy.columns)",
+    "crumbs": [
+      "Część I — Podstawy języków i pracy z danymi",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Transformacja danych</span>"
+    ]
+  },
+  {
+    "objectID": "04_transformacja.html#sortowanie",
+    "href": "04_transformacja.html#sortowanie",
+    "title": "4  Transformacja danych",
+    "section": "4.2 Sortowanie",
+    "text": "4.2 Sortowanie\n\nRPython\n\n\n\n# Sortowanie rosnąco\narrange(pracownicy, pensja)\n\n#&gt;    imie pensja   dzial lata_pracy czy_menedz doswiadczony kategoria\n#&gt; 1  Anna   4500      IT          3      FALSE        FALSE    junior\n#&gt; 2 Kasia   4800      IT          2      FALSE        FALSE    junior\n#&gt; 3 Piotr   5200 Finanse          7       TRUE         TRUE       mid\n#&gt; 4 Zofia   5500 Finanse          5      FALSE         TRUE       mid\n#&gt; 5 Marek   6100      HR         10       TRUE         TRUE    senior\n\n# Sortowanie malejąco\narrange(pracownicy, desc(pensja))\n\n#&gt;    imie pensja   dzial lata_pracy czy_menedz doswiadczony kategoria\n#&gt; 1 Marek   6100      HR         10       TRUE         TRUE    senior\n#&gt; 2 Zofia   5500 Finanse          5      FALSE         TRUE       mid\n#&gt; 3 Piotr   5200 Finanse          7       TRUE         TRUE       mid\n#&gt; 4 Kasia   4800      IT          2      FALSE        FALSE    junior\n#&gt; 5  Anna   4500      IT          3      FALSE        FALSE    junior\n\n# Sortowanie po wielu kolumnach\narrange(pracownicy, dzial, desc(pensja))\n\n#&gt;    imie pensja   dzial lata_pracy czy_menedz doswiadczony kategoria\n#&gt; 1 Zofia   5500 Finanse          5      FALSE         TRUE       mid\n#&gt; 2 Piotr   5200 Finanse          7       TRUE         TRUE       mid\n#&gt; 3 Marek   6100      HR         10       TRUE         TRUE    senior\n#&gt; 4 Kasia   4800      IT          2      FALSE        FALSE    junior\n#&gt; 5  Anna   4500      IT          3      FALSE        FALSE    junior\n\n\n\n\n# Sortowanie rosnąco\npracownicy.sort_values(\"pensja\")\n\n# Sortowanie malejąco\npracownicy.sort_values(\"pensja\", ascending=False)\n\n# Sortowanie po wielu kolumnach\npracownicy.sort_values([\"dzial\", \"pensja\"], ascending=[True, False])",
+    "crumbs": [
+      "Część I — Podstawy języków i pracy z danymi",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Transformacja danych</span>"
+    ]
+  },
+  {
+    "objectID": "04_transformacja.html#grupowanie-i-agregacja",
+    "href": "04_transformacja.html#grupowanie-i-agregacja",
+    "title": "4  Transformacja danych",
+    "section": "4.3 Grupowanie i agregacja",
+    "text": "4.3 Grupowanie i agregacja\n\n\n\n\n\n\nAnalogia do Excela\n\n\n\nGrupowanie w R/Pythonie to odpowiednik tabeli przestawnej w Excelu — tylko że wynik to zwykła ramka danych, którą możesz dowolnie dalej przetwarzać.\n\n\n\nRPython\n\n\n\n# Podstawowa agregacja — średnia pensja według działu\npracownicy |&gt;\n  group_by(dzial) |&gt;\n  summarise(\n    srednia_pensja = mean(pensja),\n    mediana_pensja = median(pensja),\n    liczba_osob    = n()\n  )\n\n#&gt; # A tibble: 3 × 4\n#&gt;   dzial   srednia_pensja mediana_pensja liczba_osob\n#&gt;   &lt;chr&gt;            &lt;dbl&gt;          &lt;dbl&gt;       &lt;int&gt;\n#&gt; 1 Finanse           5350           5350           2\n#&gt; 2 HR                6100           6100           1\n#&gt; 3 IT                4650           4650           2\n\n\n\n# Agregacja po wielu grupach\npracownicy |&gt;\n  group_by(dzial, kategoria) |&gt;\n  summarise(\n    srednia  = mean(pensja),\n    min_pens = min(pensja),\n    max_pens = max(pensja),\n    .groups  = \"drop\"   # usuwa grupowanie po agregacji\n  ) |&gt;\n  arrange(dzial, srednia)\n\n#&gt; # A tibble: 3 × 5\n#&gt;   dzial   kategoria srednia min_pens max_pens\n#&gt;   &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;\n#&gt; 1 Finanse mid          5350     5200     5500\n#&gt; 2 HR      senior       6100     6100     6100\n#&gt; 3 IT      junior       4650     4500     4800\n\n\n\n\n# Podstawowa agregacja\npracownicy.groupby(\"dzial\")[\"pensja\"].agg(\n    srednia_pensja=\"mean\",\n    mediana_pensja=\"median\",\n    liczba_osob=\"count\"\n).reset_index()\n# Agregacja po wielu grupach\n(pracownicy\n .groupby([\"dzial\", \"kategoria\"])\n .agg(\n     srednia  = (\"pensja\", \"mean\"),\n     min_pens = (\"pensja\", \"min\"),\n     max_pens = (\"pensja\", \"max\")\n )\n .reset_index()\n .sort_values([\"dzial\", \"srednia\"])\n)",
+    "crumbs": [
+      "Część I — Podstawy języków i pracy z danymi",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Transformacja danych</span>"
+    ]
+  },
+  {
+    "objectID": "04_transformacja.html#łączenie-tabel",
+    "href": "04_transformacja.html#łączenie-tabel",
+    "title": "4  Transformacja danych",
+    "section": "4.4 Łączenie tabel",
+    "text": "4.4 Łączenie tabel\n\n\n\n\n\n\nAnalogia do Excela\n\n\n\nŁączenie tabel to odpowiednik funkcji WYSZUKAJ.PIONOWO (VLOOKUP) lub relacji w Power Pivot — ale bardziej elastyczne i odporne na błędy.\n\n\n\nRPython\n\n\n\n# Tabela z informacjami o działach\ndzialy &lt;- data.frame(\n  dzial       = c(\"IT\", \"Finanse\", \"HR\"),\n  budzet      = c(500000, 350000, 200000),\n  lokalizacja = c(\"Warszawa\", \"Kraków\", \"Warszawa\")\n)\n\n# LEFT JOIN — wszyscy pracownicy + pasujące info o dziale\nleft_join(pracownicy, dzialy, by = \"dzial\")\n\n#&gt;    imie pensja   dzial lata_pracy czy_menedz doswiadczony kategoria budzet\n#&gt; 1  Anna   4500      IT          3      FALSE        FALSE    junior 500000\n#&gt; 2 Piotr   5200 Finanse          7       TRUE         TRUE       mid 350000\n#&gt; 3 Kasia   4800      IT          2      FALSE        FALSE    junior 500000\n#&gt; 4 Marek   6100      HR         10       TRUE         TRUE    senior 200000\n#&gt; 5 Zofia   5500 Finanse          5      FALSE         TRUE       mid 350000\n#&gt;   lokalizacja\n#&gt; 1    Warszawa\n#&gt; 2      Kraków\n#&gt; 3    Warszawa\n#&gt; 4    Warszawa\n#&gt; 5      Kraków\n\n\n\n# INNER JOIN — tylko wiersze pasujące w obu tabelach\ninner_join(pracownicy, dzialy, by = \"dzial\")\n\n#&gt;    imie pensja   dzial lata_pracy czy_menedz doswiadczony kategoria budzet\n#&gt; 1  Anna   4500      IT          3      FALSE        FALSE    junior 500000\n#&gt; 2 Piotr   5200 Finanse          7       TRUE         TRUE       mid 350000\n#&gt; 3 Kasia   4800      IT          2      FALSE        FALSE    junior 500000\n#&gt; 4 Marek   6100      HR         10       TRUE         TRUE    senior 200000\n#&gt; 5 Zofia   5500 Finanse          5      FALSE         TRUE       mid 350000\n#&gt;   lokalizacja\n#&gt; 1    Warszawa\n#&gt; 2      Kraków\n#&gt; 3    Warszawa\n#&gt; 4    Warszawa\n#&gt; 5      Kraków\n\n# Dostępne typy: left_join, right_join, inner_join, full_join\n\n\n\n# Tabela z informacjami o działach\ndzialy = pd.DataFrame({\n    \"dzial\":       [\"IT\", \"Finanse\", \"HR\"],\n    \"budzet\":      [500000, 350000, 200000],\n    \"lokalizacja\": [\"Warszawa\", \"Kraków\", \"Warszawa\"]\n})\n\n# LEFT JOIN\npd.merge(pracownicy, dzialy, on=\"dzial\", how=\"left\")\n# INNER JOIN\npd.merge(pracownicy, dzialy, on=\"dzial\", how=\"inner\")\n\n# Dostępne typy: how=\"left\", \"right\", \"inner\", \"outer\"",
+    "crumbs": [
+      "Część I — Podstawy języków i pracy z danymi",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Transformacja danych</span>"
+    ]
+  },
+  {
+    "objectID": "05_braki_statystyki.html",
+    "href": "05_braki_statystyki.html",
+    "title": "5  Braki danych i statystyki opisowe",
+    "section": "",
+    "text": "5.1 Obsługa brakujących danych\nW rzeczywistych danych ekonomicznych prawie zawsze występują braki — respondent nie odpowiedział, dane nie zostały zebrane, pomiar się nie powiódł. Ważne, żeby umieć je wykryć i świadomie obsłużyć.",
+    "crumbs": [
+      "Część I — Podstawy języków i pracy z danymi",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Braki danych i statystyki opisowe</span>"
+    ]
+  },
+  {
+    "objectID": "05_braki_statystyki.html#obsługa-brakujących-danych",
+    "href": "05_braki_statystyki.html#obsługa-brakujących-danych",
+    "title": "5  Braki danych i statystyki opisowe",
+    "section": "",
+    "text": "RPython\n\n\n\nlibrary(dplyr)\n\n# Przykładowe dane z brakami\ndane_z_brakami &lt;- data.frame(\n  kraj     = c(\"PL\", \"DE\", \"FR\", \"IT\", NA),\n  PKB      = c(674, 4260, 2925, NA, 1418),\n  inflacja = c(3.4, 2.1, NA, 8.7, NA)\n)\n\n# Wykrywanie braków\nis.na(dane_z_brakami)           # maska logiczna (TRUE = brak)\n\n#&gt;       kraj   PKB inflacja\n#&gt; [1,] FALSE FALSE    FALSE\n#&gt; [2,] FALSE FALSE    FALSE\n#&gt; [3,] FALSE FALSE     TRUE\n#&gt; [4,] FALSE  TRUE    FALSE\n#&gt; [5,]  TRUE FALSE     TRUE\n\nsum(is.na(dane_z_brakami))      # całkowita liczba braków\n\n#&gt; [1] 4\n\ncolSums(is.na(dane_z_brakami))  # braki w każdej kolumnie\n\n#&gt;     kraj      PKB inflacja \n#&gt;        1        1        2\n\n\n\n# Usunięcie wierszy z brakami\nna.omit(dane_z_brakami)\n\n#&gt;   kraj  PKB inflacja\n#&gt; 1   PL  674      3.4\n#&gt; 2   DE 4260      2.1\n\n# Zastąpienie braków — różne strategie\ndane_z_brakami |&gt;\n  mutate(\n    PKB      = ifelse(is.na(PKB),      mean(PKB,      na.rm = TRUE), PKB),\n    inflacja = ifelse(is.na(inflacja), median(inflacja, na.rm = TRUE), inflacja)\n  )\n\n#&gt;   kraj     PKB inflacja\n#&gt; 1   PL  674.00      3.4\n#&gt; 2   DE 4260.00      2.1\n#&gt; 3   FR 2925.00      3.4\n#&gt; 4   IT 2319.25      8.7\n#&gt; 5 &lt;NA&gt; 1418.00      3.4\n\n\n\n\nimport pandas as pd\nimport numpy as np\n\n# Przykładowe dane z brakami\ndane_z_brakami = pd.DataFrame({\n    \"kraj\":     [\"PL\", \"DE\", \"FR\", \"IT\", None],\n    \"PKB\":      [674, 4260, 2925, None, 1418],\n    \"inflacja\": [3.4, 2.1, None, 8.7, None]\n})\n\n# Wykrywanie braków\ndane_z_brakami.isna()              # maska logiczna\ndane_z_brakami.isna().sum()        # braki w każdej kolumnie\ndane_z_brakami.isna().sum().sum()  # całkowita liczba braków\n# Usunięcie wierszy z brakami\ndane_z_brakami.dropna()\n\n# Zastąpienie braków — różne strategie\ndane_z_brakami.fillna({\n    \"PKB\":      dane_z_brakami[\"PKB\"].mean(),\n    \"inflacja\": dane_z_brakami[\"inflacja\"].median()\n})\n\n\n\n\n\n\n\n\n\nStrategie obsługi braków — wybór ma znaczenie ekonomiczne\n\n\n\n\nUsunięcie (dropna / na.omit) — bezpieczne tylko gdy braków jest mało (&lt; 5%) i ich brak jest losowy (brak nie jest związany z wartością)\nZastąpienie średnią/medianą — prosta imputacja, ale zniekształca rozkład zmiennej\nZastąpienie 0 — sensowne gdy brak = nieobecność zjawiska (np. brak eksportu = 0), ale w innych przypadkach błędne\nModele imputacyjne — zaawansowane metody dla dużych zbiorów (pakiet mice w R, sklearn w Pythonie)",
+    "crumbs": [
+      "Część I — Podstawy języków i pracy z danymi",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Braki danych i statystyki opisowe</span>"
+    ]
+  },
+  {
+    "objectID": "05_braki_statystyki.html#statystyki-opisowe",
+    "href": "05_braki_statystyki.html#statystyki-opisowe",
+    "title": "5  Braki danych i statystyki opisowe",
+    "section": "5.2 Statystyki opisowe",
+    "text": "5.2 Statystyki opisowe\nStatystyki opisowe to pierwsza rzecz, którą robimy po wczytaniu nowych danych. Pozwalają szybko ocenić skalę, zakres i rozkład zmiennych.\n\nRPython\n\n\n\n# Dane makroekonomiczne do dalszych ćwiczeń\ndane_ekon &lt;- data.frame(\n  rok          = 2015:2024,\n  PKB          = c(1800, 1862, 1984, 2120, 2292, 2330, 2625, 2780, 2900, 3070),\n  inflacja     = c(2.1, 1.3, -0.6, 1.6, 1.8, 2.3, 5.1, 14.4, 11.4, 3.6),\n  stopa_bezrob = c(7.5, 6.2, 5.5, 4.9, 3.8, 3.3, 5.6, 3.4, 2.9, 2.8)\n)\n\n# Zbiorcze statystyki opisowe\nsummary(dane_ekon)\n\n#&gt;       rok            PKB          inflacja       stopa_bezrob  \n#&gt;  Min.   :2015   Min.   :1800   Min.   :-0.600   Min.   :2.800  \n#&gt;  1st Qu.:2017   1st Qu.:2018   1st Qu.: 1.650   1st Qu.:3.325  \n#&gt;  Median :2020   Median :2311   Median : 2.200   Median :4.350  \n#&gt;  Mean   :2020   Mean   :2376   Mean   : 4.300   Mean   :4.590  \n#&gt;  3rd Qu.:2022   3rd Qu.:2741   3rd Qu.: 4.725   3rd Qu.:5.575  \n#&gt;  Max.   :2024   Max.   :3070   Max.   :14.400   Max.   :7.500\n\n\n\n# Pojedyncze statystyki\nmean(dane_ekon$inflacja)\n\n#&gt; [1] 4.3\n\nsd(dane_ekon$inflacja)      # odchylenie standardowe\n\n#&gt; [1] 4.818252\n\nvar(dane_ekon$inflacja)     # wariancja\n\n#&gt; [1] 23.21556\n\nquantile(dane_ekon$inflacja, probs = c(0.25, 0.5, 0.75))\n\n#&gt;   25%   50%   75% \n#&gt; 1.650 2.200 4.725\n\n# Macierz korelacji\ncor(dane_ekon[, c(\"PKB\", \"inflacja\", \"stopa_bezrob\")])\n\n#&gt;                     PKB   inflacja stopa_bezrob\n#&gt; PKB           1.0000000  0.6814915   -0.8064647\n#&gt; inflacja      0.6814915  1.0000000   -0.4919275\n#&gt; stopa_bezrob -0.8064647 -0.4919275    1.0000000\n\n\n\n\nimport pandas as pd\n\n# Dane makroekonomiczne\ndane_ekon = pd.DataFrame({\n    \"rok\":          list(range(2015, 2025)),\n    \"PKB\":          [1800, 1862, 1984, 2120, 2292, 2330, 2625, 2780, 2900, 3070],\n    \"inflacja\":     [2.1, 1.3, -0.6, 1.6, 1.8, 2.3, 5.1, 14.4, 11.4, 3.6],\n    \"stopa_bezrob\": [7.5, 6.2, 5.5, 4.9, 3.8, 3.3, 5.6, 3.4, 2.9, 2.8]\n})\n\n# Zbiorcze statystyki opisowe\ndane_ekon.describe()\n# Pojedyncze statystyki\ndane_ekon[\"inflacja\"].mean()\ndane_ekon[\"inflacja\"].std()       # odchylenie standardowe\ndane_ekon[\"inflacja\"].var()       # wariancja\ndane_ekon[\"inflacja\"].quantile([0.25, 0.5, 0.75])\n\n# Macierz korelacji\ndane_ekon[[\"PKB\", \"inflacja\", \"stopa_bezrob\"]].corr()\n\n\n\n\n\n\n\n\n\nDane dane_ekon — używamy w kolejnych rozdziałach\n\n\n\nRamka dane_ekon z symulowanymi wskaźnikami makroekonomicznymi będzie naszym głównym przykładem w rozdziałach o wizualizacji. Zdefiniuj ją raz na początku swojego skryptu.",
+    "crumbs": [
+      "Część I — Podstawy języków i pracy z danymi",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Braki danych i statystyki opisowe</span>"
+    ]
+  }
+]

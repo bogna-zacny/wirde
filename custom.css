@@ -1,0 +1,19 @@
+/* Zakładki R/Python — aktywna zakładka pogrubiona */
+.panel-tabset .nav-link.active {
+  font-weight: bold;
+}
+
+/* Callout — kolory zgodne z paletą ekonomiczną */
+.callout-tip        { border-left-color: #2ca02c; }
+.callout-note       { border-left-color: #1f77b4; }
+.callout-important  { border-left-color: #d62728; }
+.callout-warning    { border-left-color: #ff7f0e; }
+
+/* Tabele — nieco mniejsza czcionka dla czytelności */
+table { font-size: 0.91em; }
+
+/* Kod — lekkie tło */
+pre.sourceCode {
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
