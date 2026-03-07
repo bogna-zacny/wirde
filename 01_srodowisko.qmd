@@ -35,12 +35,15 @@ Pliki `.qmd` uruchamiasz klikając **▶ Run** przy każdym bloku kodu lub **Ren
 pip install jupyterlab pandas matplotlib seaborn
 
 # Uruchomienie:
-jupyter lab
+jupyter-lab 
+# lub
+jupyter-lab
 ```
 
 **Opcja 3 — Quarto w VS Code**
 
-Analogicznie do R — pliki `.qmd` obsługują zarówno R, jak i Python.
+1. Zainstaluj rozszerzenie *quarto* w VS Code
+A nalogicznie do R — pliki `.qmd` obsługują zarówno R, jak i Python.
 
 :::
 
