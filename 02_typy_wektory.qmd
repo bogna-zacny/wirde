@@ -165,7 +165,7 @@ pensje[1]          # pierwsza pensja → 4500
 pensje[3]          # trzecia pensja  → 4800
 pensje[c(1, 3, 5)] # pierwsza, trzecia i piąta
 pensje[2:4]        # od drugiej do czwartej (włącznie)
-pensja[-1]         # bez pierwszego
+pensje[-1]         # bez pierwszego
 pensje[length(pensje)]  # ostatnia (jak Ctrl+End w Excelu)
 ```
 
