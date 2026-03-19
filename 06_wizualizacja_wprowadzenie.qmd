@@ -1,0 +1,100 @@
+# Wprowadzenie do wizualizacji danych {#sec-viz-intro}
+
+Wizualizacja danych to jeden z najważniejszych etapów analizy — dobrze zaprojektowany wykres potrafi przekazać więcej niż tabela pełna liczb. W tej części kursu nauczymy się tworzyć wykresy zarówno w R, jak i w Pythonie, zaczynając od podstawowych typów i stopniowo przechodząc do bardziej zaawansowanych technik.
+
+## Po co wizualizować dane?
+
+Wykresy służą dwóm celom:
+
+- **Eksploracja** — szybkie zrozumienie struktury i rozkładów danych, wykrycie wartości odstających i wzorców
+- **Komunikacja** — prezentacja wyników analizy w czytelnej formie dla odbiorcy
+
+Zanim przejdziemy do kodu, warto wiedzieć, że wybór typu wykresu zależy od **rodzaju danych** i **pytania, na które chcemy odpowiedzieć**.
+
+## Typy wykresów a rodzaj danych
+
+| Pytanie                          | Typ wykresu (PL)                          | Typ wykresu (EN)                  |
+|----------------------------------|-------------------------------------------|-----------------------------------|
+| Rozkład jednej zmiennej          | histogram, wykres pudełkowy               | histogram, box plot               |
+| Związek między dwiema zmiennymi  | wykres rozrzutu *(wykres punktowy)*       | scatter plot                      |
+| Porównanie grup                  | wykres słupkowy / kolumnowy^1^            | bar chart / column chart          |
+| Zmiany w czasie                  | wykres liniowy                            | line chart                        |
+| Kompozycja całości               | wykres kołowy, słupkowy / kolumnowy skumulowany | pie chart, stacked bar / column chart |
+
+^1^ W polskim Excelu: *wykres kolumnowy* = pionowe słupki (column chart), *wykres słupkowy* = poziome słupki (bar chart). W literaturze statystycznej oba określenia bywają stosowane wymiennie.
+
+## Ekosystem narzędzi
+
+::: {.panel-tabset}
+
+## R
+
+W R głównym narzędziem do wizualizacji jest pakiet **ggplot2**, będący częścią ekosystemu `tidyverse`. Opiera się na koncepcji *Grammar of Graphics* — wykresy buduje się warstwami, co daje dużą elastyczność.
+
+```r
+# Instalacja (jednorazowo)
+install.packages("ggplot2")
+
+# Wczytanie pakietu
+library(ggplot2)
+```
+
+Oprócz `ggplot2` istnieją również:
+
+- `base R` — wbudowane funkcje jak `plot()`, `hist()`, `barplot()`
+- `plotly` — wykresy interaktywne
+- `ggplotly()` — konwersja wykresów ggplot2 do interaktywnej formy
+
+W tym kursie skupiamy się na **ggplot2** jako standardzie w analizie danych w R.
+
+## Python
+
+W Pythonie najpopularniejszą biblioteką do wizualizacji jest **matplotlib**, na której bazują inne narzędzia. Do codziennej pracy często używa się **seaborn** — oferuje czytelniejszy interfejs i estetyczne domyślne style.
+
+```python
+# Instalacja (jednorazowo, w terminalu)
+# pip install matplotlib seaborn
+
+# Wczytanie bibliotek
+import matplotlib.pyplot as plt
+import seaborn as sns
+```
+
+Inne popularne narzędzia:
+
+- `plotly` — wykresy interaktywne
+- `pandas` — podstawowe wykresy bezpośrednio z DataFrame
+
+W tym kursie używamy głównie **matplotlib** i **seaborn**.
+
+:::
+
+## Dane używane w przykładach
+
+W kolejnych rozdziałach będziemy korzystać z wbudowanych zbiorów danych, które nie wymagają pobierania plików.
+
+::: {.panel-tabset}
+
+## R
+
+```r
+# Przykładowe zbiory dostępne bez instalacji dodatkowych pakietów
+data(mtcars)   # dane o samochodach
+data(iris)     # dane o kwiatach irysów
+data(diamonds, package = "ggplot2")  # dane o diamentach
+```
+
+## Python
+
+```python
+import seaborn as sns
+
+# Przykładowe zbiory dostępne w seaborn
+tips = sns.load_dataset("tips")       # napiwki w restauracji
+iris = sns.load_dataset("iris")       # kwiaty irysów
+diamonds = sns.load_dataset("diamonds")  # diamenty
+```
+
+:::
+
+W następnym rozdziale przejdziemy do tworzenia pierwszych wykresów.

@@ -19,9 +19,12 @@ book:
         - 03_ramki_danych.qmd
         - 04_transformacja.qmd
         - 05_braki_statystyki.qmd
+        - 08_podsumowanie.qmd
+    - part: "Część II — Wizualizacja danych"
+      chapters:
+        - 06_wizualizacja_wprowadzenie.qmd
         # - 06_wykresy_podstawowe.qmd
         # - 07_wykresy_zaawansowane.qmd
-        - 08_podsumowanie.qmd
 
   sidebar:
     style: docked
