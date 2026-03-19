@@ -313,5 +313,60 @@
       "Część I — Podstawy języków i pracy z danymi",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Podsumowanie i słowniczek</span>"
     ]
+  },
+  {
+    "objectID": "06_wizualizacja_wprowadzenie.html",
+    "href": "06_wizualizacja_wprowadzenie.html",
+    "title": "7  Wprowadzenie do wizualizacji danych",
+    "section": "",
+    "text": "7.1 Po co wizualizować dane?\nWizualizacja danych to jeden z najważniejszych etapów analizy — dobrze zaprojektowany wykres potrafi przekazać więcej niż tabela pełna liczb. W tej części kursu nauczymy się tworzyć wykresy zarówno w R, jak i w Pythonie, zaczynając od podstawowych typów i stopniowo przechodząc do bardziej zaawansowanych technik.\nWykresy służą dwóm celom:\nZanim przejdziemy do kodu, warto wiedzieć, że wybór typu wykresu zależy od rodzaju danych i pytania, na które chcemy odpowiedzieć.",
+    "crumbs": [
+      "Część II — Wizualizacja danych",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Wprowadzenie do wizualizacji danych</span>"
+    ]
+  },
+  {
+    "objectID": "06_wizualizacja_wprowadzenie.html#po-co-wizualizować-dane",
+    "href": "06_wizualizacja_wprowadzenie.html#po-co-wizualizować-dane",
+    "title": "7  Wprowadzenie do wizualizacji danych",
+    "section": "",
+    "text": "Eksploracja — szybkie zrozumienie struktury i rozkładów danych, wykrycie wartości odstających i wzorców\nKomunikacja — prezentacja wyników analizy w czytelnej formie dla odbiorcy",
+    "crumbs": [
+      "Część II — Wizualizacja danych",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Wprowadzenie do wizualizacji danych</span>"
+    ]
+  },
+  {
+    "objectID": "06_wizualizacja_wprowadzenie.html#typy-wykresów-a-rodzaj-danych",
+    "href": "06_wizualizacja_wprowadzenie.html#typy-wykresów-a-rodzaj-danych",
+    "title": "7  Wprowadzenie do wizualizacji danych",
+    "section": "7.2 Typy wykresów a rodzaj danych",
+    "text": "7.2 Typy wykresów a rodzaj danych\n\n\n\n\n\n\n\n\nPytanie\nTyp wykresu (PL)\nTyp wykresu (EN)\n\n\n\n\nRozkład jednej zmiennej\nhistogram, wykres pudełkowy\nhistogram, box plot\n\n\nZwiązek między dwiema zmiennymi\nwykres rozrzutu (wykres punktowy)\nscatter plot\n\n\nPorównanie grup\nwykres słupkowy / kolumnowy1\nbar chart / column chart\n\n\nZmiany w czasie\nwykres liniowy\nline chart\n\n\nKompozycja całości\nwykres kołowy, słupkowy / kolumnowy skumulowany\npie chart, stacked bar / column chart\n\n\n\n1 W polskim Excelu: wykres kolumnowy = pionowe słupki (column chart), wykres słupkowy = poziome słupki (bar chart). W literaturze statystycznej oba określenia bywają stosowane wymiennie.",
+    "crumbs": [
+      "Część II — Wizualizacja danych",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Wprowadzenie do wizualizacji danych</span>"
+    ]
+  },
+  {
+    "objectID": "06_wizualizacja_wprowadzenie.html#ekosystem-narzędzi",
+    "href": "06_wizualizacja_wprowadzenie.html#ekosystem-narzędzi",
+    "title": "7  Wprowadzenie do wizualizacji danych",
+    "section": "7.3 Ekosystem narzędzi",
+    "text": "7.3 Ekosystem narzędzi\n\nRPython\n\n\nW R głównym narzędziem do wizualizacji jest pakiet ggplot2, będący częścią ekosystemu tidyverse. Opiera się na koncepcji Grammar of Graphics — wykresy buduje się warstwami, co daje dużą elastyczność.\n# Instalacja (jednorazowo)\ninstall.packages(\"ggplot2\")\n\n# Wczytanie pakietu\nlibrary(ggplot2)\nOprócz ggplot2 istnieją również:\n\nbase R — wbudowane funkcje jak plot(), hist(), barplot()\nplotly — wykresy interaktywne\nggplotly() — konwersja wykresów ggplot2 do interaktywnej formy\n\nW tym kursie skupiamy się na ggplot2 jako standardzie w analizie danych w R.\n\n\nW Pythonie najpopularniejszą biblioteką do wizualizacji jest matplotlib, na której bazują inne narzędzia. Do codziennej pracy często używa się seaborn — oferuje czytelniejszy interfejs i estetyczne domyślne style.\n# Instalacja (jednorazowo, w terminalu)\n# pip install matplotlib seaborn\n\n# Wczytanie bibliotek\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nInne popularne narzędzia:\n\nplotly — wykresy interaktywne\npandas — podstawowe wykresy bezpośrednio z DataFrame\n\nW tym kursie używamy głównie matplotlib i seaborn.",
+    "crumbs": [
+      "Część II — Wizualizacja danych",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Wprowadzenie do wizualizacji danych</span>"
+    ]
+  },
+  {
+    "objectID": "06_wizualizacja_wprowadzenie.html#dane-używane-w-przykładach",
+    "href": "06_wizualizacja_wprowadzenie.html#dane-używane-w-przykładach",
+    "title": "7  Wprowadzenie do wizualizacji danych",
+    "section": "7.4 Dane używane w przykładach",
+    "text": "7.4 Dane używane w przykładach\nW kolejnych rozdziałach będziemy korzystać z wbudowanych zbiorów danych, które nie wymagają pobierania plików.\n\nRPython\n\n\n# Przykładowe zbiory dostępne bez instalacji dodatkowych pakietów\ndata(mtcars)   # dane o samochodach\ndata(iris)     # dane o kwiatach irysów\ndata(diamonds, package = \"ggplot2\")  # dane o diamentach\n\n\nimport seaborn as sns\n\n# Przykładowe zbiory dostępne w seaborn\ntips = sns.load_dataset(\"tips\")       # napiwki w restauracji\niris = sns.load_dataset(\"iris\")       # kwiaty irysów\ndiamonds = sns.load_dataset(\"diamonds\")  # diamenty\n\n\n\nW następnym rozdziale przejdziemy do tworzenia pierwszych wykresów.",
+    "crumbs": [
+      "Część II — Wizualizacja danych",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Wprowadzenie do wizualizacji danych</span>"
+    ]
   }
 ]

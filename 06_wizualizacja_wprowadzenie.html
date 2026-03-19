@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Wizualizacja i raportowanie danych ekonomicznych</title>
+<title>7&nbsp; Wprowadzenie do wizualizacji danych – Wizualizacja i raportowanie danych ekonomicznych</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,7 +65,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./01_srodowisko.html" rel="next">
+<link href="./08_podsumowanie.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -108,7 +143,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Przedmowa</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06_wizualizacja_wprowadzenie.html">Część II — Wizualizacja danych</a></li><li class="breadcrumb-item"><a href="./06_wizualizacja_wprowadzenie.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Wprowadzenie do wizualizacji danych</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -130,7 +165,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Przedmowa</span></a>
   </div>
 </li>
@@ -192,7 +227,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06_wizualizacja_wprowadzenie.html" class="sidebar-item-text sidebar-link">
+  <a href="./06_wizualizacja_wprowadzenie.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Wprowadzenie do wizualizacji danych</span></span></a>
   </div>
 </li>
@@ -208,22 +243,19 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Spis treści</h2>
    
   <ul>
-  <li><a href="#przedmowa" id="toc-przedmowa" class="nav-link active" data-scroll-target="#przedmowa">Przedmowa</a>
-  <ul class="collapse">
-  <li><a href="#dla-kogo-jest-ta-książka" id="toc-dla-kogo-jest-ta-książka" class="nav-link" data-scroll-target="#dla-kogo-jest-ta-książka">Dla kogo jest ta książka?</a></li>
-  <li><a href="#jak-korzystać-z-podręcznika" id="toc-jak-korzystać-z-podręcznika" class="nav-link" data-scroll-target="#jak-korzystać-z-podręcznika">Jak korzystać z podręcznika?</a></li>
-  <li><a href="#struktura-podręcznika" id="toc-struktura-podręcznika" class="nav-link" data-scroll-target="#struktura-podręcznika">Struktura podręcznika</a></li>
-  </ul></li>
+  <li><a href="#po-co-wizualizować-dane" id="toc-po-co-wizualizować-dane" class="nav-link active" data-scroll-target="#po-co-wizualizować-dane"><span class="header-section-number">7.1</span> Po co wizualizować dane?</a></li>
+  <li><a href="#typy-wykresów-a-rodzaj-danych" id="toc-typy-wykresów-a-rodzaj-danych" class="nav-link" data-scroll-target="#typy-wykresów-a-rodzaj-danych"><span class="header-section-number">7.2</span> Typy wykresów a rodzaj danych</a></li>
+  <li><a href="#ekosystem-narzędzi" id="toc-ekosystem-narzędzi" class="nav-link" data-scroll-target="#ekosystem-narzędzi"><span class="header-section-number">7.3</span> Ekosystem narzędzi</a></li>
+  <li><a href="#dane-używane-w-przykładach" id="toc-dane-używane-w-przykładach" class="nav-link" data-scroll-target="#dane-używane-w-przykładach"><span class="header-section-number">7.4</span> Dane używane w przykładach</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06_wizualizacja_wprowadzenie.html">Część II — Wizualizacja danych</a></li><li class="breadcrumb-item"><a href="./06_wizualizacja_wprowadzenie.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Wprowadzenie do wizualizacji danych</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Wizualizacja i raportowanie danych ekonomicznych</h1>
-<p class="subtitle lead">Wprowadzenie do R i Pythona</p>
+<h1 class="title"><span id="sec-viz-intro" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Wprowadzenie do wizualizacji danych</span></span></h1>
 </div>
 
 
@@ -231,12 +263,6 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">March 2026</p>
-    </div>
-  </div>
   
     
   </div>
@@ -246,121 +272,124 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="przedmowa" class="level1 unnumbered">
-<h1 class="unnumbered">Przedmowa</h1>
-<p>Niniejszy podręcznik powstał z myślą o studentach, którzy chcą nauczyć się pracy z danymi przy użyciu nowoczesnych narzędzi programistycznych — bez konieczności wcześniejszego doświadczenia w programowaniu.</p>
-<section id="dla-kogo-jest-ta-książka" class="level2">
-<h2 class="anchored" data-anchor-id="dla-kogo-jest-ta-książka">Dla kogo jest ta książka?</h2>
-<p>Materiał jest skierowany do osób, które:</p>
+<p>Wizualizacja danych to jeden z najważniejszych etapów analizy — dobrze zaprojektowany wykres potrafi przekazać więcej niż tabela pełna liczb. W tej części kursu nauczymy się tworzyć wykresy zarówno w R, jak i w Pythonie, zaczynając od podstawowych typów i stopniowo przechodząc do bardziej zaawansowanych technik.</p>
+<section id="po-co-wizualizować-dane" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="po-co-wizualizować-dane"><span class="header-section-number">7.1</span> Po co wizualizować dane?</h2>
+<p>Wykresy służą dwóm celom:</p>
 <ul>
-<li>dobrze radzą sobie z Excelem i rozumieją podstawowe operacje na danych tabelarycznych,</li>
-<li>nie mają doświadczenia z językami programowania,</li>
-<li>chcą nauczyć się <strong>R</strong> lub <strong>Pythona</strong> (lub obu) do analizy i wizualizacji danych ekonomicznych,</li>
-<li>będą tworzyć raporty analityczne w <strong>Quarto</strong>.</li>
+<li><strong>Eksploracja</strong> — szybkie zrozumienie struktury i rozkładów danych, wykrycie wartości odstających i wzorców</li>
+<li><strong>Komunikacja</strong> — prezentacja wyników analizy w czytelnej formie dla odbiorcy</li>
 </ul>
+<p>Zanim przejdziemy do kodu, warto wiedzieć, że wybór typu wykresu zależy od <strong>rodzaju danych</strong> i <strong>pytania, na które chcemy odpowiedzieć</strong>.</p>
 </section>
-<section id="jak-korzystać-z-podręcznika" class="level2">
-<h2 class="anchored" data-anchor-id="jak-korzystać-z-podręcznika">Jak korzystać z podręcznika?</h2>
-<p>Każdy rozdział omawia najpierw koncepcję ogólnie, a następnie pokazuje jej realizację w obu językach — w osobnych zakładkach. Nie musisz uczyć się obu języków jednocześnie. Wybierz jeden i konsekwentnie śledź jego zakładkę.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Analogia do Excela
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Przez cały podręcznik odwołujemy się do Excela jako punktu odniesienia. Kluczowa tabela porównań:</p>
+<section id="typy-wykresów-a-rodzaj-danych" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="typy-wykresów-a-rodzaj-danych"><span class="header-section-number">7.2</span> Typy wykresów a rodzaj danych</h2>
 <table class="caption-top table">
 <colgroup>
+<col style="width: 30%">
 <col style="width: 38%">
-<col style="width: 16%">
-<col style="width: 44%">
+<col style="width: 31%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Excel</th>
-<th>R</th>
-<th>Python</th>
+<th>Pytanie</th>
+<th>Typ wykresu (PL)</th>
+<th>Typ wykresu (EN)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Arkusz kalkulacyjny</td>
-<td><code>data.frame</code> / <code>tibble</code></td>
-<td><code>DataFrame</code> (pandas)</td>
+<td>Rozkład jednej zmiennej</td>
+<td>histogram, wykres pudełkowy</td>
+<td>histogram, box plot</td>
 </tr>
 <tr class="even">
-<td>Kolumna</td>
-<td>wektor: <code>vector</code></td>
-<td>seria: <code>Series</code> (pandas)</td>
+<td>Związek między dwiema zmiennymi</td>
+<td>wykres rozrzutu <em>(wykres punktowy)</em></td>
+<td>scatter plot</td>
 </tr>
 <tr class="odd">
-<td>Komórka</td>
-<td>element wektora</td>
-<td>element serii</td>
+<td>Porównanie grup</td>
+<td>wykres słupkowy / kolumnowy<sup>1</sup></td>
+<td>bar chart / column chart</td>
 </tr>
 <tr class="even">
-<td>Formuła w kolumnie</td>
-<td>operacja na wektorze</td>
-<td>operacja na kolumnie</td>
+<td>Zmiany w czasie</td>
+<td>wykres liniowy</td>
+<td>line chart</td>
 </tr>
 <tr class="odd">
-<td>Wybieranie kolumn</td>
-<td><code>select()</code> / <code>df[c("col1","col2")]</code> / <code>df[["col1","col2"]]</code></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>Filtr</td>
-<td><code>filter()</code>/ indeksowanie</td>
-<td><code>query()</code> / indeksowanie</td>
-</tr>
-<tr class="odd">
-<td>Sortowanie</td>
-<td><code>arrange()</code></td>
-<td><code>.sort_values()</code></td>
-</tr>
-<tr class="even">
-<td>Modyfikowanie kolumn</td>
-<td><code>mutate()</code></td>
-<td><code>df["nowa"] = ...</code></td>
-</tr>
-<tr class="odd">
-<td>Agregacja</td>
-<td><code>group_by()</code> + <code>summarise()</code></td>
-<td><code>groupby()</code> + <code>agg()</code></td>
-</tr>
-<tr class="even">
-<td>Tabela przestawna</td>
-<td><code>pivot_wider()</code> / <code>pivot_longer()</code></td>
-<td><code>.pivot_table()</code> / <code>.melt()</code></td>
-</tr>
-<tr class="odd">
-<td>Wykres</td>
-<td><code>ggplot2</code></td>
-<td><code>matplotlib</code> / <code>seaborn</code></td>
+<td>Kompozycja całości</td>
+<td>wykres kołowy, słupkowy / kolumnowy skumulowany</td>
+<td>pie chart, stacked bar / column chart</td>
 </tr>
 </tbody>
 </table>
+<p><sup>1</sup> W polskim Excelu: <em>wykres kolumnowy</em> = pionowe słupki (column chart), <em>wykres słupkowy</em> = poziome słupki (bar chart). W literaturze statystycznej oba określenia bywają stosowane wymiennie.</p>
+</section>
+<section id="ekosystem-narzędzi" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="ekosystem-narzędzi"><span class="header-section-number">7.3</span> Ekosystem narzędzi</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>W R głównym narzędziem do wizualizacji jest pakiet <strong>ggplot2</strong>, będący częścią ekosystemu <code>tidyverse</code>. Opiera się na koncepcji <em>Grammar of Graphics</em> — wykresy buduje się warstwami, co daje dużą elastyczność.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalacja (jednorazowo)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Wczytanie pakietu</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Oprócz <code>ggplot2</code> istnieją również:</p>
+<ul>
+<li><code>base R</code> — wbudowane funkcje jak <code>plot()</code>, <code>hist()</code>, <code>barplot()</code></li>
+<li><code>plotly</code> — wykresy interaktywne</li>
+<li><code>ggplotly()</code> — konwersja wykresów ggplot2 do interaktywnej formy</li>
+</ul>
+<p>W tym kursie skupiamy się na <strong>ggplot2</strong> jako standardzie w analizie danych w R.</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>W Pythonie najpopularniejszą biblioteką do wizualizacji jest <strong>matplotlib</strong>, na której bazują inne narzędzia. Do codziennej pracy często używa się <strong>seaborn</strong> — oferuje czytelniejszy interfejs i estetyczne domyślne style.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalacja (jednorazowo, w terminalu)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># pip install matplotlib seaborn</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Wczytanie bibliotek</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Inne popularne narzędzia:</p>
+<ul>
+<li><code>plotly</code> — wykresy interaktywne</li>
+<li><code>pandas</code> — podstawowe wykresy bezpośrednio z DataFrame</li>
+</ul>
+<p>W tym kursie używamy głównie <strong>matplotlib</strong> i <strong>seaborn</strong>.</p>
+</div>
 </div>
 </div>
 </section>
-<section id="struktura-podręcznika" class="level2">
-<h2 class="anchored" data-anchor-id="struktura-podręcznika">Struktura podręcznika</h2>
-<p>Podręcznik podzielony jest na dwie części:</p>
-<p><strong>Część I — Podstawy języków i pracy z danymi</strong></p>
-<p>Obejmuje niezbędne minimum programistyczne: środowisko pracy, typy danych, wektory, ramki danych, filtrowanie, transformację, braki danych, statystyki opisowe.</p>
-<p><strong>Część II — Wizualizacja danych</strong> <em>(w przygotowaniu)</em></p>
-<p>Tworzenie profesjonalnych wizualizacaji danych.</p>
-<p><strong>Część III — Raportowanie w Quarto</strong> <em>(w przygotowaniu)</em></p>
-<p>Tworzenie profesjonalnych raportów, dokumentów i prezentacji z wykorzystaniem Quarto.</p>
-<hr>
-<p><em>Wizualizacja i raportowanie danych ekonomicznych</em></p>
+<section id="dane-używane-w-przykładach" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="dane-używane-w-przykładach"><span class="header-section-number">7.4</span> Dane używane w przykładach</h2>
+<p>W kolejnych rozdziałach będziemy korzystać z wbudowanych zbiorów danych, które nie wymagają pobierania plików.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Przykładowe zbiory dostępne bez instalacji dodatkowych pakietów</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)   <span class="co"># dane o samochodach</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(iris)     <span class="co"># dane o kwiatach irysów</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(diamonds, <span class="at">package =</span> <span class="st">"ggplot2"</span>)  <span class="co"># dane o diamentach</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Przykładowe zbiory dostępne w seaborn</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> sns.load_dataset(<span class="st">"tips"</span>)       <span class="co"># napiwki w restauracji</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> sns.load_dataset(<span class="st">"iris"</span>)       <span class="co"># kwiaty irysów</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>diamonds <span class="op">=</span> sns.load_dataset(<span class="st">"diamonds"</span>)  <span class="co"># diamenty</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>W następnym rozdziale przejdziemy do tworzenia pierwszych wykresów.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -766,11 +795,11 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./08_podsumowanie.html" class="pagination-link" aria-label="Podsumowanie i słowniczek">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Podsumowanie i słowniczek</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./01_srodowisko.html" class="pagination-link" aria-label="Środowisko pracy">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Środowisko pracy</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
