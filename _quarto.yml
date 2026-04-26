@@ -23,7 +23,8 @@ book:
     - part: "Część II — Wizualizacja danych"
       chapters:
         - 06_wizualizacja_wprowadzenie.qmd
-        - 07_wykresy_podstawowe.qmd
+        - 07a_wykresy_podstawowe.qmd
+        - 07b_anatomia_wykresu.qmd
         # - 07_wykresy_zaawansowane.qmd
 
   sidebar:
