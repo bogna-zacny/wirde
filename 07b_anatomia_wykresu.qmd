@@ -1001,6 +1001,7 @@ ggplot(dane, aes(x = rok, y = inflacja)) +
 ```
 
 ```{r}
+#| eval: false
 library(ggpmisc)  # dla stat_poly_eq()
 # Wykres rozrzutu z linią regresji 
 ggplot(dane, aes(x = bezrobocie, y = inflacja)) +
