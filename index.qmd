@@ -43,7 +43,7 @@ Podręcznik podzielony jest na dwie części:
 
 Obejmuje niezbędne minimum programistyczne: środowisko pracy, typy danych, wektory, ramki danych, filtrowanie, transformację, braki danych, statystyki opisowe.
 
-**Część II — Wizualizacja danych** *(w przygotowaniu)*
+**Część II — Wizualizacja danych**
 
 Tworzenie profesjonalnych wizualizacaji danych.
 
