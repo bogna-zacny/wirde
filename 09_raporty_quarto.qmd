@@ -616,7 +616,6 @@ library(scales)
 # Wczytanie danych
 # dane <- read_csv("dane.csv")
 ```
-```
 
 ## Wstęp
 
