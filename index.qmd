@@ -47,7 +47,7 @@ Obejmuje niezbędne minimum programistyczne: środowisko pracy, typy danych, wek
 
 Tworzenie profesjonalnych wizualizacaji danych.
 
-**Część III — Raportowanie w Quarto** *(w przygotowaniu)*
+**Część III — Raportowanie w Quarto** 
 
 Tworzenie profesjonalnych raportów, dokumentów i prezentacji z wykorzystaniem Quarto.
 

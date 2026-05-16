@@ -1,0 +1,678 @@
+# Raporty reprodukowalne w Quarto {#sec-quarto-reports}
+
+Raporty tworzenone w `Quarto` to dokument który łączy kod, wyniki i narrację w jedną spójną całość, którą można przekazać innym. `Quarto` pozwala tworzyć takie raporty automatycznie — zmieniasz dane, klikasz *Render* i masz aktualny dokument.
+
+::: {.callout-note}
+## Czym jest raport reprodukowalny?
+
+Tradycyjny raport powstaje w dwóch krokach: analizujesz dane w R, kopiujesz wyniki do Worda. Gdy dane się zmieniają — musisz robić to od nowa, ręcznie. Błędy są nieuniknione.
+
+**Raport reprodukowalny** to jeden dokument który zawiera i kod, i tekst. Quarto wykonuje kod automatycznie przy każdym renderowaniu — wyniki, tabele i wykresy zawsze odpowiadają aktualnym danym. Nie ma kopiowania, nie ma rozbieżności.
+:::
+
+## Struktura dokumentu Quarto {#sec-qmd-structure}
+
+Każdy plik `.qmd` składa się z trzech elementów:
+
+```
+---
+# 1. NAGŁÓWEK YAML — ustawienia dokumentu
+title: "Mój raport"
+format: html
+---
+
+# 2. TEKST — narracja w formacie Markdown
+
+Tutaj piszesz zwykły tekst, nagłówki, listy...
+
+# 3. KOMÓRKI KODU — wykonywalny kod R lub Python
+
+```{r}
+1 + 1
+```
+```
+
+Przyjrzyjmy się każdemu elementowi z osobna.
+
+---
+
+## Nagłówek YAML {#sec-yaml}
+
+Nagłówek YAML to sekcja między `---` na początku pliku. Określa metadane dokumentu i sposób jego renderowania.
+
+### Podstawowy nagłówek
+
+```yaml
+---
+title: "Analiza wskaźników makroekonomicznych Polski"
+subtitle: "Raport kwartalny"
+author: "Jan Kowalski"
+date: today
+lang: pl
+format: html
+---
+```
+
+::: {.callout-tip}
+`date: today` automatycznie wstawia aktualną datę przy każdym renderowaniu — nie musisz jej aktualizować ręcznie.
+:::
+
+### Format HTML
+
+Format HTML jest domyślnym i najbogatszym formatem Quarto — obsługuje interaktywność, zakładki, rozwijane sekcje i wiele innych.
+
+```yaml
+---
+title: "Analiza wskaźników makroekonomicznych Polski"
+author: "Jan Kowalski"
+date: today
+lang: pl
+format:
+  html:
+    toc: true                  # spis treści
+    toc-depth: 3               # głębokość spisu (nagłówki H1–H3)
+    toc-title: "Spis treści"
+    number-sections: true      # numerowanie rozdziałów
+    theme: cosmo               # motyw wizualny
+    embed-resources: true      # jeden plik HTML (bez zewnętrznych zasobów)
+    code-fold: true            # kod domyślnie zwinięty
+    code-summary: "Pokaż kod"  # etykieta przycisku rozwijającego kod
+    fig-width: 7               # domyślna szerokość wykresów (cale)
+    fig-height: 4.5            # domyślna wysokość wykresów (cale)
+---
+```
+
+::: {.callout-important}
+## `embed-resources: true` — jeden plik HTML
+
+Domyślnie Quarto generuje plik HTML + folder z zasobami (CSS, JS, obrazki). Opcja `embed-resources: true` osadza wszystko w jednym pliku — możesz go wysłać e-mailem lub udostępnić bez obawy że coś się rozjedzie.
+:::
+
+### Format DOCX (Word)
+
+```yaml
+---
+title: "Analiza wskaźników makroekonomicznych Polski"
+author: "Jan Kowalski"
+date: today
+lang: pl
+format:
+  docx:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    fig-width: 6               # w DOCX mniejsze wykresy — kolumna tekstu A4
+    fig-height: 4
+    reference-doc: szablon.docx   # opcjonalnie: własny szablon Word
+---
+```
+
+::: {.callout-tip}
+## Własny szablon Word
+
+Jeśli Twoja uczelnia wymaga określonego formatowania (czcionka, marginesy, nagłówki), możesz stworzyć szablon Word i wskazać go w `reference-doc`. Quarto przejmie stamtąd style formatowania.
+
+Aby wygenerować szablon do modyfikacji:
+```bash
+quarto pandoc -o szablon.docx --print-default-data-file reference.docx
+```
+:::
+
+### Dwa formaty jednocześnie
+
+```yaml
+---
+title: "Analiza wskaźników makroekonomicznych Polski"
+author: "Jan Kowalski"
+date: today
+lang: pl
+format:
+  html:
+    toc: true
+    embed-resources: true
+    code-fold: true
+  docx:
+    toc: true
+    fig-width: 6
+---
+```
+
+Renderowanie: `quarto render raport.qmd` — Quarto wygeneruje oba pliki naraz.
+
+### Globalne ustawienia wykonywania kodu
+
+```yaml
+execute:
+  echo: false       # nie pokazuj kodu w raporcie (tylko wyniki)
+  warning: false    # ukryj ostrzeżenia
+  message: false    # ukryj komunikaty (np. przy wczytywaniu pakietów)
+```
+
+::: {.callout-note}
+Ustawienie `echo: false` w sekcji `execute` wyłącza wyświetlanie kodu globalnie — idealne dla raportów dla odbiorców nieznających R. Możesz je nadpisać w konkretnej komórce ustawiając `#| echo: true`.
+:::
+
+---
+
+## Tekst w formacie Markdown {#sec-markdown}
+
+Treść raportu piszesz w Markdown — prostym języku znaczników. Poniżej najważniejsze elementy.
+
+### Nagłówki i struktura
+
+```markdown
+# Rozdział 1 — nagłówek poziomu 1
+
+## Podrozdział 1.1 — nagłówek poziomu 2
+
+### Sekcja 1.1.1 — nagłówek poziomu 3
+```
+
+### Formatowanie tekstu
+
+```markdown
+**pogrubienie**
+*kursywa*
+***pogrubiona kursywa***
+`kod inline` — np. nazwa funkcji `mean()` lub pakietu `ggplot2`
+~~przekreślenie~~
+```
+
+Wynik: **pogrubienie**, *kursywa*, ***pogrubiona kursywa***, `kod inline`, ~~przekreślenie~~
+
+### Listy
+
+```markdown
+Lista nieuporządkowana:
+- pierwszy element
+- drugi element
+  - element zagnieżdżony
+
+Lista numerowana:
+1. krok pierwszy
+2. krok drugi
+3. krok trzeci
+```
+
+### Tabele w Markdown
+
+```markdown
+| Kraj      | PKB (mld USD) | Inflacja (%) |
+|-----------|--------------|-------------|
+| Polska    | 688          | 11.4        |
+| Niemcy    | 4 072        | 5.9         |
+| Francja   | 2 782        | 5.2         |
+```
+
+::: {.callout-tip}
+Tabele w czystym Markdown są dobre dla prostych, statycznych zestawień. Do tabel generowanych z danych R używamy pakietu `knitr` lub `gt` — opisanych w @sec-tables.
+:::
+
+### Callout boxes
+
+Quarto oferuje specjalne bloki wyróżniające — przydatne do podkreślenia ważnych informacji:
+
+```markdown
+::: {.callout-note}
+Notatka — dodatkowa informacja
+:::
+
+::: {.callout-tip}
+Wskazówka — praktyczna rada
+:::
+
+::: {.callout-important}
+Ważne — informacja krytyczna
+:::
+
+::: {.callout-warning}
+Ostrzeżenie
+:::
+```
+
+### Równania matematyczne
+
+Quarto obsługuje zapis równań w LaTeX — zarówno w tekście jak i w osobnych blokach:
+
+```markdown
+Równanie w tekście: $\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i$
+
+Równanie w osobnym bloku:
+$$
+\text{PKB} = C + I + G + (X - M)
+$$
+```
+
+Wynik (blok): $$\text{PKB} = C + I + G + (X - M)$$
+
+---
+
+## Komórki kodu {#sec-chunks}
+
+Komórka kodu to blok otoczony potrójnymi apostrofami z oznaczeniem języka w klamrach:
+
+````markdown
+```{r}
+# kod R
+mean(c(1, 2, 3, 4, 5))
+```
+````
+
+### Opcje komórki
+
+Opcje komórki kontrolują jak kod i jego wyniki są wyświetlane w dokumencie. Zapisujesz je wewnątrz komórki, poprzedzone `#|`:
+
+```{r}
+#| echo: true       # pokaż kod (true/false)
+#| eval: true       # wykonaj kod (true/false)
+#| include: true    # wstaw wyniki do dokumentu (true/false)
+#| warning: false   # ukryj ostrzeżenia
+#| message: false   # ukryj komunikaty
+#| fig-width: 8     # szerokość wykresu (cale)
+#| fig-height: 5    # wysokość wykresu (cale)
+#| fig-cap: "Tytuł pod wykresem"  # podpis wykresu
+#| label: fig-inflacja             # etykieta do odsyłaczy (@fig-inflacja)
+```
+
+### Najważniejsze kombinacje opcji
+
+| Cel | Opcje |
+|-----|-------|
+| Tylko wynik, bez kodu | `echo: false` |
+| Tylko kod, bez wykonywania | `eval: false` |
+| Ani kodu ani wyniku (kod pomocniczy) | `include: false` |
+| Kod widoczny, ale nie wykonany | `eval: false, echo: true` |
+| Wykres z podpisem | `fig-cap: "..."`, `label: fig-...` |
+
+### Komórka setup — wczytywanie pakietów
+
+Dobrą praktyką jest umieszczenie wszystkich `library()` i wczytywania danych w jednej komórce na początku dokumentu z opcją `include: false`:
+
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(scales)
+
+# Wczytanie danych
+dane <- data.frame(
+  rok          = 2015:2024,
+  PKB          = c(1800, 1862, 1984, 2120, 2292,
+                   2330, 2625, 2780, 2900, 3070),
+  inflacja     = c(2.1,  1.3, -0.6,  1.6,  1.8,
+                   2.3,  5.1, 14.4, 11.4,  3.6),
+  bezrobocie   = c(7.5,  6.2,  5.5,  4.9,  3.8,
+                   3.3,  5.6,  3.4,  2.9,  2.8)
+)
+```
+
+### Wyniki inline — wartości w tekście
+
+Quarto pozwala wstawiać wyniki obliczeń bezpośrednio do tekstu narracji. Dzięki temu liczby w tekście zawsze odpowiadają aktualnym danym:
+
+```markdown
+Średnia inflacja w analizowanym okresie wyniosła
+`r round(mean(dane$inflacja), 1)`%.
+Maksimum osiągnięto w roku `r dane$rok[which.max(dane$inflacja)]`,
+kiedy inflacja wyniosła `r max(dane$inflacja)`%.
+```
+
+Wynik w dokumencie:
+
+> Średnia inflacja w analizowanym okresie wyniosła `r round(mean(dane$inflacja), 1)`%. Maksimum osiągnięto w roku `r dane$rok[which.max(dane$inflacja)]`, kiedy inflacja wyniosła `r max(dane$inflacja)`%.
+
+::: {.callout-important}
+## To jest kluczowa zaleta raportów reprodukowalnych
+
+Gdy dane się zaktualizują — liczby w tekście zaktualizują się automatycznie przy kolejnym renderowaniu. Nie musisz niczego szukać i poprawiać ręcznie.
+:::
+
+---
+
+## Tabele {#sec-tables}
+
+### Tabele z `knitr::kable()`
+
+Funkcja `kable()` zamienia ramkę danych R na sformatowaną tabelę w dokumencie. Działa poprawnie w HTML i DOCX.
+
+```{r}
+#| echo: true
+#| label: tbl-podstawowa
+#| tbl-cap: "Wskaźniki makroekonomiczne Polski (2015–2024)"
+
+library(knitr)
+
+dane |>
+  kable(
+    col.names = c("Rok", "PKB (mld PLN)",
+                  "Inflacja (%)", "Bezrobocie (%)"),
+    digits    = 1,
+    align     = c("c", "r", "r", "r"),
+    format.args = list(big.mark = " ")
+  )
+```
+
+### Tabele z `kableExtra` — zaawansowane formatowanie
+
+Pakiet `kableExtra` rozszerza `kable()` o dodatkowe opcje: kolorowanie wierszy, grupowanie nagłówków, pogrubienie komórek.
+
+```{r}
+#| echo: true
+#| label: tbl-kableextra
+#| tbl-cap: "Wskaźniki makroekonomiczne Polski — formatowanie zaawansowane"
+
+library(kableExtra)
+
+dane |>
+  kable(
+    col.names = c("Rok", "PKB (mld PLN)",
+                  "Inflacja (%)", "Bezrobocie (%)"),
+    digits    = 1,
+    align     = c("c", "r", "r", "r"),
+    format.args = list(big.mark = " ")
+  ) |>
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed"),
+    full_width        = FALSE,
+    position          = "center"
+  ) |>
+  column_spec(3,                           # kolumna Inflacja
+    bold  = dane$inflacja > 5,             # pogrub gdy > 5%
+    color = ifelse(dane$inflacja > 5,
+                   "white", "black"),
+    background = ifelse(dane$inflacja > 5,
+                        "#d62728", "transparent")
+  ) |>
+  row_spec(0, bold = TRUE, background = "#f0f0f0") |>  # nagłówek
+  add_header_above(
+    c(" " = 1, "Dane makroekonomiczne" = 3)
+  )
+```
+
+::: {.callout-tip}
+## `kableExtra` w DOCX
+
+Opcje `bootstrap_options` działają tylko w HTML — w DOCX są ignorowane. Formatowanie warunkowe (`column_spec`, `row_spec`) działa w obu formatach. Jeśli renderujesz jednocześnie do HTML i DOCX, możesz warunkowo dostosować styl:
+
+```r
+fmt <- if (knitr::is_html_output()) "html" else "latex"
+```
+:::
+
+### Tabele z `gt` — formatowanie warunkowe
+
+Pakiet `gt` oferuje bardziej rozbudowane opcje formatowania, szczególnie przydatne w HTML. Poniżej przykład z formatowaniem warunkowym:
+
+```{r}
+#| echo: true
+#| label: tbl-gt
+#| tbl-cap: "Wskaźniki makroekonomiczne — pakiet gt"
+
+library(gt)
+
+dane |>
+  gt() |>
+  cols_label(
+    rok        = "Rok",
+    PKB        = "PKB (mld PLN)",
+    inflacja   = "Inflacja (%)",
+    bezrobocie = "Bezrobocie (%)"
+  ) |>
+  fmt_number(columns = PKB,        decimals = 0, sep_mark = " ") |>
+  fmt_number(columns = c(inflacja, bezrobocie), decimals = 1) |>
+  # Formatowanie warunkowe — tło kolumny inflacja
+  data_color(
+    columns = inflacja,
+    method  = "numeric",
+    palette = c("white", "#ff9999", "#d62728"),
+    domain  = c(min(dane$inflacja), max(dane$inflacja))
+  ) |>
+  tab_header(
+    title    = "Wskaźniki makroekonomiczne Polski",
+    subtitle = "Lata 2015–2024"
+  ) |>
+  tab_source_note("Źródło: GUS | Dane ilustracyjne") |>
+  tab_style(
+    style     = cell_text(weight = "bold"),
+    locations = cells_column_labels()
+  )
+```
+
+::: {.callout-note}
+## `kable` vs `gt` — kiedy co używać?
+
+| | `kable` + `kableExtra` | `gt` |
+|--|---|---|
+| Prostota | bardzo prosta | więcej kodu |
+| HTML | dobry | bardzo dobry |
+| DOCX | dobry | ograniczony |
+| Formatowanie warunkowe | dobry | rozbudowane |
+| Wykresy w komórkach | brak | (`gt_sparkline`) |
+
+Dla raportów generowanych jednocześnie do HTML i DOCX — `kable` + `kableExtra`. Dla raportów tylko HTML gdzie zależy Ci na efekcie wizualnym — `gt`.
+:::
+
+---
+
+## Odnośniki i cytowania {#sec-references}
+
+### Odnośniki do elementów dokumentu
+
+Quarto automatycznie tworzy odnośniki do elementów z etykietą (`label`). Konwencja nazewnictwa:
+
+- `fig-` — wykresy (np. `#| label: fig-inflacja`)
+- `tbl-` — tabele (np. `#| label: tbl-pkb`)
+- `sec-` — sekcje (np. `{#sec-wstep}`)
+
+W tekście odwołujesz się przez `@etykieta`:
+
+```markdown
+Jak pokazano na @fig-inflacja, inflacja w 2022 roku osiągnęła rekordowy poziom.
+
+Szczegółowe dane przedstawia @tbl-podstawowa.
+
+Metodologia opisana jest w @sec-dane.
+```
+
+Quarto automatycznie wstawi "Rysunek 1", "Tabela 2", "Rozdział 3" — w odpowiednim języku jeśli ustawisz `lang: pl` w YAML.
+
+### Cytowania bibliograficzne — styl APA
+
+Cytowania w Quarto obsługiwane są przez plik `.bib` (BibTeX). Workflow:
+
+**Krok 1 — utwórz plik `bibliografia.bib`** w folderze projektu:
+
+```bibtex
+@book{woźniak2020,
+  author    = {Woźniak, Michał Gabriel},
+  title     = {Gospodarka Polski},
+  year      = {2020},
+  publisher = {PWN},
+  address   = {Warszawa}
+}
+
+@article{kowalski2023,
+  author  = {Kowalski, Jan and Nowak, Anna},
+  title   = {Inflacja w Polsce w latach 2020--2023},
+  journal = {Gospodarka Narodowa},
+  year    = {2023},
+  volume  = {314},
+  number  = {2},
+  pages   = {45--67},
+  doi     = {10.33119/GN/163704}
+}
+
+@misc{gus2024,
+  author = {{Główny Urząd Statystyczny}},
+  title  = {Wskaźniki makroekonomiczne},
+  year   = {2024},
+  url    = {https://stat.gov.pl},
+  note   = {Dostęp: 2024-12-01}
+}
+```
+
+**Krok 2 — wskaż plik w nagłówku YAML:**
+
+```yaml
+---
+title: "Analiza wskaźników makroekonomicznych"
+bibliography: bibliografia.bib
+csl: apa.csl          # plik ze stylem cytowań
+lang: pl
+---
+```
+
+::: {.callout-tip}
+## Plik CSL dla stylu APA
+
+Plik `apa.csl` definiuje formatowanie cytowań. Pobierz go ze strony [zotero.org/styles](https://www.zotero.org/styles) (wyszukaj "apa") i umieść w folderze projektu obok pliku `.qmd`.
+
+Quarto obsługuje tysiące stylów cytowań z repozytorium CSL — możesz użyć dowolnego stylu wymaganego przez wydawnictwo lub uczelnię.
+:::
+
+**Krok 3 — cytuj w tekście:**
+
+```markdown
+Wzrost inflacji w Polsce był powiązany z globalnymi zaburzeniami podaży
+[@kowalski2023]. Szczegółowe dane makroekonomiczne dostępne są
+w publikacjach GUS [-@gus2024].
+
+Jak zauważa @woźniak2020 [s. 142], gospodarka polska...
+```
+
+Wyniki w stylu APA:
+
+- `[@kowalski2023]` → (Kowalski & Nowak, 2023)
+- `[-@gus2024]` → (2024) — bez nazwiska autora
+- `@woźniak2020 [s. 142]` → Woźniak (2020, s. 142)
+
+**Krok 4 — lista bibliograficzna**
+
+Quarto automatycznie dodaje sformatowaną listę bibliograficzną na końcu dokumentu. Możesz wskazać jej miejsce przez:
+
+```markdown
+## Literatura
+
+::: {#refs}
+:::
+```
+
+::: {.callout-tip}
+## Zotero — zarządzanie bibliografią
+
+Jeśli używasz programu Zotero do zarządzania literaturą, możesz eksportować pozycje bezpośrednio do pliku `.bib` (prawy klik na kolekcję → Eksportuj → BibTeX). RStudio ma też integrację z Zotero — pozwala wyszukiwać i wstawiać cytowania bez opuszczania edytora.
+:::
+
+---
+
+## Kompletny szablon raportu {#sec-template}
+
+Poniżej kompletny szablon raportu ekonomicznego gotowy do wypełnienia. Skopiuj go jako punkt startowy dla własnych raportów.
+
+````markdown
+---
+title: "Tytuł raportu"
+subtitle: "Podtytuł"
+author: "Imię Nazwisko"
+date: today
+lang: pl
+bibliography: bibliografia.bib
+csl: apa.csl
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-title: "Spis treści"
+    number-sections: true
+    theme: cosmo
+    embed-resources: true
+    code-fold: true
+    code-summary: "Pokaż kod"
+    fig-width: 7
+    fig-height: 4.5
+  docx:
+    toc: true
+    number-sections: true
+    fig-width: 6
+    fig-height: 4
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(scales)
+
+# Wczytanie danych
+# dane <- read_csv("dane.csv")
+```
+
+## Wstęp
+
+Krótki opis celu raportu, źródła danych i okresu analizy.
+Dane pochodzą z bazy [@zrodlo2024].
+
+## Dane i metodologia {#sec-dane}
+
+Opis zbioru danych i zastosowanych metod.
+
+## Wyniki analizy {#sec-wyniki}
+
+### Statystyki opisowe
+
+```{r}
+#| label: tbl-statystyki
+#| tbl-cap: "Podstawowe statystyki opisowe"
+
+# dane |>
+#   summary() |>
+#   kable(digits = 2) |>
+#   kable_styling(bootstrap_options = "striped")
+```
+
+### Wykres
+
+```{r}
+#| label: fig-glowny
+#| fig-cap: "Tytuł wykresu"
+#| fig-width: 8
+#| fig-height: 5
+
+# ggplot(dane, aes(...)) + geom_...()
+```
+
+Jak pokazano na @fig-glowny, ...
+
+## Wnioski
+
+Podsumowanie najważniejszych wyników.
+
+## Literatura
+
+::: {#refs}
+:::
+````
+
+---
+
+## Najczęstsze problemy i rozwiązania {#sec-troubleshooting}
+
+| Problem | Przyczyna | Rozwiązanie |
+|---------|-----------|-------------|
+| Raport się nie renderuje | Błąd w kodzie R | Sprawdź konsolę — Quarto podaje numer linii błędu |
+| Wykres nie pojawia się | `eval: false` lub błąd w kodzie | Sprawdź czy kod działa w konsoli osobno |
+| Polskie znaki wyświetlają się źle | Kodowanie pliku | Zapisz plik jako UTF-8 (w RStudio: File → Save with Encoding) |
+| Tabela wychodzi poza margines w DOCX | Za dużo kolumn | Zmniejsz czcionkę tabelki lub usuń kolumny |
+| Cytowanie nie pojawia się | Zła etykieta w `.bib` | Sprawdź czy etykieta w `@etykieta` dokładnie odpowiada kluczowi w pliku `.bib` |
+| Spis treści nie działa w DOCX | Brak nagłówków H1–H3 | Upewnij się że używasz `#`, `##`, `###` |
+| Wyniki inline pokazują błąd | Obiekt nie istnieje | Sprawdź czy komórka `setup` jest wykonana (`include: false`, nie `eval: false`) |
