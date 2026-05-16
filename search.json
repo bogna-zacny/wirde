@@ -34,7 +34,7 @@
     "href": "index.html#struktura-podręcznika",
     "title": "Wizualizacja i raportowanie danych ekonomicznych",
     "section": "Struktura podręcznika",
-    "text": "Struktura podręcznika\nPodręcznik podzielony jest na dwie części:\nCzęść I — Podstawy języków i pracy z danymi\nObejmuje niezbędne minimum programistyczne: środowisko pracy, typy danych, wektory, ramki danych, filtrowanie, transformację, braki danych, statystyki opisowe.\nCzęść II — Wizualizacja danych\nTworzenie profesjonalnych wizualizacaji danych.\nCzęść III — Raportowanie w Quarto (w przygotowaniu)\nTworzenie profesjonalnych raportów, dokumentów i prezentacji z wykorzystaniem Quarto.\n\nWizualizacja i raportowanie danych ekonomicznych",
+    "text": "Struktura podręcznika\nPodręcznik podzielony jest na dwie części:\nCzęść I — Podstawy języków i pracy z danymi\nObejmuje niezbędne minimum programistyczne: środowisko pracy, typy danych, wektory, ramki danych, filtrowanie, transformację, braki danych, statystyki opisowe.\nCzęść II — Wizualizacja danych\nTworzenie profesjonalnych wizualizacaji danych.\nCzęść III — Raportowanie w Quarto\nTworzenie profesjonalnych raportów, dokumentów i prezentacji z wykorzystaniem Quarto.\n\nWizualizacja i raportowanie danych ekonomicznych",
     "crumbs": [
       "Przedmowa"
     ]
@@ -554,6 +554,149 @@
     "crumbs": [
       "Część II — Wizualizacja danych",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Anatomia wykresu — dostosowywanie w ggplot2 i matplotlib</span>"
+    ]
+  },
+  {
+    "objectID": "09_raporty_quarto.html",
+    "href": "09_raporty_quarto.html",
+    "title": "10  Raporty reprodukowalne w Quarto",
+    "section": "",
+    "text": "10.1 Struktura dokumentu Quarto\nRaporty tworzenone w Quarto to dokument który łączy kod, wyniki i narrację w jedną spójną całość, którą można przekazać innym. Quarto pozwala tworzyć takie raporty automatycznie — zmieniasz dane, klikasz Render i masz aktualny dokument.\nKażdy plik .qmd składa się z trzech elementów:\n:::",
+    "crumbs": [
+      "Część III — Raportowanie w Quarto",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Raporty reprodukowalne w Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "09_raporty_quarto.html#sec-qmd-structure",
+    "href": "09_raporty_quarto.html#sec-qmd-structure",
+    "title": "10  Raporty reprodukowalne w Quarto",
+    "section": "",
+    "text": "---\n# 1. NAGŁÓWEK YAML — ustawienia dokumentu\ntitle: \"Mój raport\"\nformat: html\n---\n\n# 2. TEKST — narracja w formacie Markdown\n\nTutaj piszesz zwykły tekst, nagłówki, listy...\n\n# 3. KOMÓRKI KODU — wykonywalny kod R lub Python\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n\n#&gt; [1] 2\n\n\n\nPrzyjrzyjmy się każdemu elementowi z osobna.\n\n---\n\n## Nagłówek YAML {#sec-yaml}\n\nNagłówek YAML to sekcja między `---` na początku pliku. Określa metadane dokumentu i sposób jego renderowania.\n\n### Podstawowy nagłówek\n\n```yaml\n---\ntitle: \"Analiza wskaźników makroekonomicznych Polski\"\nsubtitle: \"Raport kwartalny\"\nauthor: \"Jan Kowalski\"\ndate: today\nlang: pl\nformat: html\n---\n\n\n\n\n\n\nTip\n\n\n\ndate: today automatycznie wstawia aktualną datę przy każdym renderowaniu — nie musisz jej aktualizować ręcznie.\n\n\n\nFormat HTML\nFormat HTML jest domyślnym i najbogatszym formatem Quarto — obsługuje interaktywność, zakładki, rozwijane sekcje i wiele innych.\n---\ntitle: \"Analiza wskaźników makroekonomicznych Polski\"\nauthor: \"Jan Kowalski\"\ndate: today\nlang: pl\nformat:\n  html:\n    toc: true                  # spis treści\n    toc-depth: 3               # głębokość spisu (nagłówki H1–H3)\n    toc-title: \"Spis treści\"\n    number-sections: true      # numerowanie rozdziałów\n    theme: cosmo               # motyw wizualny\n    embed-resources: true      # jeden plik HTML (bez zewnętrznych zasobów)\n    code-fold: true            # kod domyślnie zwinięty\n    code-summary: \"Pokaż kod\"  # etykieta przycisku rozwijającego kod\n    fig-width: 7               # domyślna szerokość wykresów (cale)\n    fig-height: 4.5            # domyślna wysokość wykresów (cale)\n---\n\n\n\n\n\n\nImportantembed-resources: true — jeden plik HTML\n\n\n\nDomyślnie Quarto generuje plik HTML + folder z zasobami (CSS, JS, obrazki). Opcja embed-resources: true osadza wszystko w jednym pliku — możesz go wysłać e-mailem lub udostępnić bez obawy że coś się rozjedzie.\n\n\n\n\nFormat DOCX (Word)\n---\ntitle: \"Analiza wskaźników makroekonomicznych Polski\"\nauthor: \"Jan Kowalski\"\ndate: today\nlang: pl\nformat:\n  docx:\n    toc: true\n    toc-depth: 3\n    number-sections: true\n    fig-width: 6               # w DOCX mniejsze wykresy — kolumna tekstu A4\n    fig-height: 4\n    reference-doc: szablon.docx   # opcjonalnie: własny szablon Word\n---\n\n\n\n\n\n\nTipWłasny szablon Word\n\n\n\nJeśli Twoja uczelnia wymaga określonego formatowania (czcionka, marginesy, nagłówki), możesz stworzyć szablon Word i wskazać go w reference-doc. Quarto przejmie stamtąd style formatowania.\nAby wygenerować szablon do modyfikacji:\nquarto pandoc -o szablon.docx --print-default-data-file reference.docx\n\n\n\n\nDwa formaty jednocześnie\n---\ntitle: \"Analiza wskaźników makroekonomicznych Polski\"\nauthor: \"Jan Kowalski\"\ndate: today\nlang: pl\nformat:\n  html:\n    toc: true\n    embed-resources: true\n    code-fold: true\n  docx:\n    toc: true\n    fig-width: 6\n---\nRenderowanie: quarto render raport.qmd — Quarto wygeneruje oba pliki naraz.\n\n\nGlobalne ustawienia wykonywania kodu\nexecute:\n  echo: false       # nie pokazuj kodu w raporcie (tylko wyniki)\n  warning: false    # ukryj ostrzeżenia\n  message: false    # ukryj komunikaty (np. przy wczytywaniu pakietów)\n\n\n\n\n\n\nNote\n\n\n\nUstawienie echo: false w sekcji execute wyłącza wyświetlanie kodu globalnie — idealne dla raportów dla odbiorców nieznających R. Możesz je nadpisać w konkretnej komórce ustawiając #| echo: true.",
+    "crumbs": [
+      "Część III — Raportowanie w Quarto",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Raporty reprodukowalne w Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "09_raporty_quarto.html#sec-markdown",
+    "href": "09_raporty_quarto.html#sec-markdown",
+    "title": "10  Raporty reprodukowalne w Quarto",
+    "section": "10.2 Tekst w formacie Markdown",
+    "text": "10.2 Tekst w formacie Markdown\nTreść raportu piszesz w Markdown — prostym języku znaczników. Poniżej najważniejsze elementy.\n\nNagłówki i struktura\n# Rozdział 1 — nagłówek poziomu 1\n\n## Podrozdział 1.1 — nagłówek poziomu 2\n\n### Sekcja 1.1.1 — nagłówek poziomu 3\n\n\nFormatowanie tekstu\n**pogrubienie**\n*kursywa*\n***pogrubiona kursywa***\n`kod inline` — np. nazwa funkcji `mean()` lub pakietu `ggplot2`\n~~przekreślenie~~\nWynik: pogrubienie, kursywa, pogrubiona kursywa, kod inline, przekreślenie\n\n\nListy\nLista nieuporządkowana:\n- pierwszy element\n- drugi element\n  - element zagnieżdżony\n\nLista numerowana:\n1. krok pierwszy\n2. krok drugi\n3. krok trzeci\n\n\nTabele w Markdown\n| Kraj      | PKB (mld USD) | Inflacja (%) |\n|-----------|--------------|-------------|\n| Polska    | 688          | 11.4        |\n| Niemcy    | 4 072        | 5.9         |\n| Francja   | 2 782        | 5.2         |\n\n\n\n\n\n\nTip\n\n\n\nTabele w czystym Markdown są dobre dla prostych, statycznych zestawień. Do tabel generowanych z danych R używamy pakietu knitr lub gt — opisanych w Section 10.4.\n\n\n\n\nCallout boxes\nQuarto oferuje specjalne bloki wyróżniające — przydatne do podkreślenia ważnych informacji:\n::: {.callout-note}\nNotatka — dodatkowa informacja\n:::\n\n::: {.callout-tip}\nWskazówka — praktyczna rada\n:::\n\n::: {.callout-important}\nWażne — informacja krytyczna\n:::\n\n::: {.callout-warning}\nOstrzeżenie\n:::\n\n\nRównania matematyczne\nQuarto obsługuje zapis równań w LaTeX — zarówno w tekście jak i w osobnych blokach:\nRównanie w tekście: $\\bar{x} = \\frac{1}{n}\\sum_{i=1}^{n} x_i$\n\nRównanie w osobnym bloku:\n$$\n\\text{PKB} = C + I + G + (X - M)\n$$\nWynik (blok): \\[\\text{PKB} = C + I + G + (X - M)\\]",
+    "crumbs": [
+      "Część III — Raportowanie w Quarto",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Raporty reprodukowalne w Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "09_raporty_quarto.html#sec-chunks",
+    "href": "09_raporty_quarto.html#sec-chunks",
+    "title": "10  Raporty reprodukowalne w Quarto",
+    "section": "10.3 Komórki kodu",
+    "text": "10.3 Komórki kodu\nKomórka kodu to blok otoczony potrójnymi apostrofami z oznaczeniem języka w klamrach:\n\n::: {.cell}\n\n```{.r .cell-code}\n# kod R\nmean(c(1, 2, 3, 4, 5))\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n#&gt; [1] 3\n```\n\n\n:::\n:::\n\nOpcje komórki\nOpcje komórki kontrolują jak kod i jego wyniki są wyświetlane w dokumencie. Zapisujesz je wewnątrz komórki, poprzedzone #|:\n\n\nNajważniejsze kombinacje opcji\n\n\n\nCel\nOpcje\n\n\n\n\nTylko wynik, bez kodu\necho: false\n\n\nTylko kod, bez wykonywania\neval: false\n\n\nAni kodu ani wyniku (kod pomocniczy)\ninclude: false\n\n\nKod widoczny, ale nie wykonany\neval: false, echo: true\n\n\nWykres z podpisem\nfig-cap: \"...\", label: fig-...\n\n\n\n\n\nKomórka setup — wczytywanie pakietów\nDobrą praktyką jest umieszczenie wszystkich library() i wczytywania danych w jednej komórce na początku dokumentu z opcją include: false:\n\n\nWyniki inline — wartości w tekście\nQuarto pozwala wstawiać wyniki obliczeń bezpośrednio do tekstu narracji. Dzięki temu liczby w tekście zawsze odpowiadają aktualnym danym:\nŚrednia inflacja w analizowanym okresie wyniosła\n4.3%.\nMaksimum osiągnięto w roku 2022,\nkiedy inflacja wyniosła 14.4%.\nWynik w dokumencie:\n\nŚrednia inflacja w analizowanym okresie wyniosła 4.3%. Maksimum osiągnięto w roku 2022, kiedy inflacja wyniosła 14.4%.\n\n\n\n\n\n\n\nImportantTo jest kluczowa zaleta raportów reprodukowalnych\n\n\n\nGdy dane się zaktualizują — liczby w tekście zaktualizują się automatycznie przy kolejnym renderowaniu. Nie musisz niczego szukać i poprawiać ręcznie.",
+    "crumbs": [
+      "Część III — Raportowanie w Quarto",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Raporty reprodukowalne w Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "09_raporty_quarto.html#sec-tables",
+    "href": "09_raporty_quarto.html#sec-tables",
+    "title": "10  Raporty reprodukowalne w Quarto",
+    "section": "10.4 Tabele",
+    "text": "10.4 Tabele\n\nTabele z knitr::kable()\nFunkcja kable() zamienia ramkę danych R na sformatowaną tabelę w dokumencie. Działa poprawnie w HTML i DOCX.\n\nlibrary(knitr)\n\ndane |&gt;\n  kable(\n    col.names = c(\"Rok\", \"PKB (mld PLN)\",\n                  \"Inflacja (%)\", \"Bezrobocie (%)\"),\n    digits    = 1,\n    align     = c(\"c\", \"r\", \"r\", \"r\"),\n    format.args = list(big.mark = \" \")\n  )\n\n\n\nTable 10.1: Wskaźniki makroekonomiczne Polski (2015–2024)\n\n\n\n\n\n\nRok\nPKB (mld PLN)\nInflacja (%)\nBezrobocie (%)\n\n\n\n\n2 015\n1 800\n2.1\n7.5\n\n\n2 016\n1 862\n1.3\n6.2\n\n\n2 017\n1 984\n-0.6\n5.5\n\n\n2 018\n2 120\n1.6\n4.9\n\n\n2 019\n2 292\n1.8\n3.8\n\n\n2 020\n2 330\n2.3\n3.3\n\n\n2 021\n2 625\n5.1\n5.6\n\n\n2 022\n2 780\n14.4\n3.4\n\n\n2 023\n2 900\n11.4\n2.9\n\n\n2 024\n3 070\n3.6\n2.8\n\n\n\n\n\n\n\n\n\n\nTabele z kableExtra — zaawansowane formatowanie\nPakiet kableExtra rozszerza kable() o dodatkowe opcje: kolorowanie wierszy, grupowanie nagłówków, pogrubienie komórek.\n\nlibrary(kableExtra)\n\ndane |&gt;\n  kable(\n    col.names = c(\"Rok\", \"PKB (mld PLN)\",\n                  \"Inflacja (%)\", \"Bezrobocie (%)\"),\n    digits    = 1,\n    align     = c(\"c\", \"r\", \"r\", \"r\"),\n    format.args = list(big.mark = \" \")\n  ) |&gt;\n  kable_styling(\n    bootstrap_options = c(\"striped\", \"hover\", \"condensed\"),\n    full_width        = FALSE,\n    position          = \"center\"\n  ) |&gt;\n  column_spec(3,                           # kolumna Inflacja\n    bold  = dane$inflacja &gt; 5,             # pogrub gdy &gt; 5%\n    color = ifelse(dane$inflacja &gt; 5,\n                   \"white\", \"black\"),\n    background = ifelse(dane$inflacja &gt; 5,\n                        \"#d62728\", \"transparent\")\n  ) |&gt;\n  row_spec(0, bold = TRUE, background = \"#f0f0f0\") |&gt;  # nagłówek\n  add_header_above(\n    c(\" \" = 1, \"Dane makroekonomiczne\" = 3)\n  )\n\n\n\nTable 10.2: Wskaźniki makroekonomiczne Polski — formatowanie zaawansowane\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDane makroekonomiczne\n\n\n\nRok\nPKB (mld PLN)\nInflacja (%)\nBezrobocie (%)\n\n\n\n\n2 015\n1 800\n2.1\n7.5\n\n\n2 016\n1 862\n1.3\n6.2\n\n\n2 017\n1 984\n-0.6\n5.5\n\n\n2 018\n2 120\n1.6\n4.9\n\n\n2 019\n2 292\n1.8\n3.8\n\n\n2 020\n2 330\n2.3\n3.3\n\n\n2 021\n2 625\n5.1\n5.6\n\n\n2 022\n2 780\n14.4\n3.4\n\n\n2 023\n2 900\n11.4\n2.9\n\n\n2 024\n3 070\n3.6\n2.8\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTipkableExtra w DOCX\n\n\n\nOpcje bootstrap_options działają tylko w HTML — w DOCX są ignorowane. Formatowanie warunkowe (column_spec, row_spec) działa w obu formatach. Jeśli renderujesz jednocześnie do HTML i DOCX, możesz warunkowo dostosować styl:\nfmt &lt;- if (knitr::is_html_output()) \"html\" else \"latex\"\n\n\n\n\nTabele z gt — formatowanie warunkowe\nPakiet gt oferuje bardziej rozbudowane opcje formatowania, szczególnie przydatne w HTML. Poniżej przykład z formatowaniem warunkowym:\n\nlibrary(gt)\n\ndane |&gt;\n  gt() |&gt;\n  cols_label(\n    rok        = \"Rok\",\n    PKB        = \"PKB (mld PLN)\",\n    inflacja   = \"Inflacja (%)\",\n    bezrobocie = \"Bezrobocie (%)\"\n  ) |&gt;\n  fmt_number(columns = PKB,        decimals = 0, sep_mark = \" \") |&gt;\n  fmt_number(columns = c(inflacja, bezrobocie), decimals = 1) |&gt;\n  # Formatowanie warunkowe — tło kolumny inflacja\n  data_color(\n    columns = inflacja,\n    method  = \"numeric\",\n    palette = c(\"white\", \"#ff9999\", \"#d62728\"),\n    domain  = c(min(dane$inflacja), max(dane$inflacja))\n  ) |&gt;\n  tab_header(\n    title    = \"Wskaźniki makroekonomiczne Polski\",\n    subtitle = \"Lata 2015–2024\"\n  ) |&gt;\n  tab_source_note(\"Źródło: GUS | Dane ilustracyjne\") |&gt;\n  tab_style(\n    style     = cell_text(weight = \"bold\"),\n    locations = cells_column_labels()\n  )\n\n\n\nTable 10.3: Wskaźniki makroekonomiczne — pakiet gt\n\n\n\n\n\n\n\n\n\nWskaźniki makroekonomiczne Polski\n\n\nLata 2015–2024\n\n\nRok\nPKB (mld PLN)\nInflacja (%)\nBezrobocie (%)\n\n\n\n\n2015\n1 800\n2.1\n7.5\n\n\n2016\n1 862\n1.3\n6.2\n\n\n2017\n1 984\n−0.6\n5.5\n\n\n2018\n2 120\n1.6\n4.9\n\n\n2019\n2 292\n1.8\n3.8\n\n\n2020\n2 330\n2.3\n3.3\n\n\n2021\n2 625\n5.1\n5.6\n\n\n2022\n2 780\n14.4\n3.4\n\n\n2023\n2 900\n11.4\n2.9\n\n\n2024\n3 070\n3.6\n2.8\n\n\n\nŹródło: GUS | Dane ilustracyjne\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNotekable vs gt — kiedy co używać?\n\n\n\n\n\n\n\nkable + kableExtra\ngt\n\n\n\n\nProstota\nbardzo prosta\nwięcej kodu\n\n\nHTML\ndobry\nbardzo dobry\n\n\nDOCX\ndobry\nograniczony\n\n\nFormatowanie warunkowe\ndobry\nrozbudowane\n\n\nWykresy w komórkach\nbrak\n(gt_sparkline)\n\n\n\nDla raportów generowanych jednocześnie do HTML i DOCX — kable + kableExtra. Dla raportów tylko HTML gdzie zależy Ci na efekcie wizualnym — gt.",
+    "crumbs": [
+      "Część III — Raportowanie w Quarto",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Raporty reprodukowalne w Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "09_raporty_quarto.html#sec-references",
+    "href": "09_raporty_quarto.html#sec-references",
+    "title": "10  Raporty reprodukowalne w Quarto",
+    "section": "10.5 Odnośniki i cytowania",
+    "text": "10.5 Odnośniki i cytowania\n\nOdnośniki do elementów dokumentu\nQuarto automatycznie tworzy odnośniki do elementów z etykietą (label). Konwencja nazewnictwa:\n\nfig- — wykresy (np. #| label: fig-inflacja)\ntbl- — tabele (np. #| label: tbl-pkb)\nsec- — sekcje (np. {#sec-wstep})\n\nW tekście odwołujesz się przez @etykieta:\nJak pokazano na @fig-inflacja, inflacja w 2022 roku osiągnęła rekordowy poziom.\n\nSzczegółowe dane przedstawia @tbl-podstawowa.\n\nMetodologia opisana jest w @sec-dane.\nQuarto automatycznie wstawi “Rysunek 1”, “Tabela 2”, “Rozdział 3” — w odpowiednim języku jeśli ustawisz lang: pl w YAML.\n\n\nCytowania bibliograficzne — styl APA\nCytowania w Quarto obsługiwane są przez plik .bib (BibTeX). Workflow:\nKrok 1 — utwórz plik bibliografia.bib w folderze projektu:\n@book{woźniak2020,\n  author    = {Woźniak, Michał Gabriel},\n  title     = {Gospodarka Polski},\n  year      = {2020},\n  publisher = {PWN},\n  address   = {Warszawa}\n}\n\n@article{kowalski2023,\n  author  = {Kowalski, Jan and Nowak, Anna},\n  title   = {Inflacja w Polsce w latach 2020--2023},\n  journal = {Gospodarka Narodowa},\n  year    = {2023},\n  volume  = {314},\n  number  = {2},\n  pages   = {45--67},\n  doi     = {10.33119/GN/163704}\n}\n\n@misc{gus2024,\n  author = {{Główny Urząd Statystyczny}},\n  title  = {Wskaźniki makroekonomiczne},\n  year   = {2024},\n  url    = {https://stat.gov.pl},\n  note   = {Dostęp: 2024-12-01}\n}\nKrok 2 — wskaż plik w nagłówku YAML:\n---\ntitle: \"Analiza wskaźników makroekonomicznych\"\nbibliography: bibliografia.bib\ncsl: apa.csl          # plik ze stylem cytowań\nlang: pl\n---\n\n\n\n\n\n\nTipPlik CSL dla stylu APA\n\n\n\nPlik apa.csl definiuje formatowanie cytowań. Pobierz go ze strony zotero.org/styles (wyszukaj “apa”) i umieść w folderze projektu obok pliku .qmd.\nQuarto obsługuje tysiące stylów cytowań z repozytorium CSL — możesz użyć dowolnego stylu wymaganego przez wydawnictwo lub uczelnię.\n\n\nKrok 3 — cytuj w tekście:\nWzrost inflacji w Polsce był powiązany z globalnymi zaburzeniami podaży\n[@kowalski2023]. Szczegółowe dane makroekonomiczne dostępne są\nw publikacjach GUS [-@gus2024].\n\nJak zauważa @woźniak2020 [s. 142], gospodarka polska...\nWyniki w stylu APA:\n\n[@kowalski2023] → (Kowalski & Nowak, 2023)\n[-@gus2024] → (2024) — bez nazwiska autora\n@woźniak2020 [s. 142] → Woźniak (2020, s. 142)\n\nKrok 4 — lista bibliograficzna\nQuarto automatycznie dodaje sformatowaną listę bibliograficzną na końcu dokumentu. Możesz wskazać jej miejsce przez:\n## Literatura\n\n::: {#refs}\n:::\n\n\n\n\n\n\nTipZotero — zarządzanie bibliografią\n\n\n\nJeśli używasz programu Zotero do zarządzania literaturą, możesz eksportować pozycje bezpośrednio do pliku .bib (prawy klik na kolekcję → Eksportuj → BibTeX). RStudio ma też integrację z Zotero — pozwala wyszukiwać i wstawiać cytowania bez opuszczania edytora.",
+    "crumbs": [
+      "Część III — Raportowanie w Quarto",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Raporty reprodukowalne w Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "09_raporty_quarto.html#sec-template",
+    "href": "09_raporty_quarto.html#sec-template",
+    "title": "10  Raporty reprodukowalne w Quarto",
+    "section": "10.6 Kompletny szablon raportu",
+    "text": "10.6 Kompletny szablon raportu\nPoniżej kompletny szablon raportu ekonomicznego gotowy do wypełnienia. Skopiuj go jako punkt startowy dla własnych raportów.\n---\ntitle: \"Tytuł raportu\"\nsubtitle: \"Podtytuł\"\nauthor: \"Imię Nazwisko\"\ndate: today\nlang: pl\nbibliography: bibliografia.bib\ncsl: apa.csl\nformat:\n  html:\n    toc: true\n    toc-depth: 3\n    toc-title: \"Spis treści\"\n    number-sections: true\n    theme: cosmo\n    embed-resources: true\n    code-fold: true\n    code-summary: \"Pokaż kod\"\n    fig-width: 7\n    fig-height: 4.5\n  docx:\n    toc: true\n    number-sections: true\n    fig-width: 6\n    fig-height: 4\nexecute:\n  echo: false\n  warning: false\n  message: false\n---",
+    "crumbs": [
+      "Część III — Raportowanie w Quarto",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Raporty reprodukowalne w Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "09_raporty_quarto.html#wstęp",
+    "href": "09_raporty_quarto.html#wstęp",
+    "title": "10  Raporty reprodukowalne w Quarto",
+    "section": "10.7 Wstęp",
+    "text": "10.7 Wstęp\nKrótki opis celu raportu, źródła danych i okresu analizy. Dane pochodzą z bazy [@zrodlo2024].",
+    "crumbs": [
+      "Część III — Raportowanie w Quarto",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Raporty reprodukowalne w Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "09_raporty_quarto.html#sec-dane",
+    "href": "09_raporty_quarto.html#sec-dane",
+    "title": "10  Raporty reprodukowalne w Quarto",
+    "section": "10.8 Dane i metodologia",
+    "text": "10.8 Dane i metodologia\nOpis zbioru danych i zastosowanych metod.",
+    "crumbs": [
+      "Część III — Raportowanie w Quarto",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Raporty reprodukowalne w Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "09_raporty_quarto.html#sec-wyniki",
+    "href": "09_raporty_quarto.html#sec-wyniki",
+    "title": "10  Raporty reprodukowalne w Quarto",
+    "section": "10.9 Wyniki analizy",
+    "text": "10.9 Wyniki analizy\n\nStatystyki opisowe\n\n\n\nTable 10.4: Podstawowe statystyki opisowe\n\n\n# dane |&gt;\n#   summary() |&gt;\n#   kable(digits = 2) |&gt;\n#   kable_styling(bootstrap_options = \"striped\")\n\n\n\n\n\nWykres\n\n# ggplot(dane, aes(...)) + geom_...()\n\nJak pokazano na ?fig-glowny, …",
+    "crumbs": [
+      "Część III — Raportowanie w Quarto",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Raporty reprodukowalne w Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "09_raporty_quarto.html#wnioski",
+    "href": "09_raporty_quarto.html#wnioski",
+    "title": "10  Raporty reprodukowalne w Quarto",
+    "section": "10.10 Wnioski",
+    "text": "10.10 Wnioski\nPodsumowanie najważniejszych wyników.",
+    "crumbs": [
+      "Część III — Raportowanie w Quarto",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Raporty reprodukowalne w Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "09_raporty_quarto.html#literatura",
+    "href": "09_raporty_quarto.html#literatura",
+    "title": "10  Raporty reprodukowalne w Quarto",
+    "section": "10.11 Literatura",
+    "text": "10.11 Literatura\n\n\n````",
+    "crumbs": [
+      "Część III — Raportowanie w Quarto",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Raporty reprodukowalne w Quarto</span>"
+    ]
+  },
+  {
+    "objectID": "09_raporty_quarto.html#sec-troubleshooting",
+    "href": "09_raporty_quarto.html#sec-troubleshooting",
+    "title": "10  Raporty reprodukowalne w Quarto",
+    "section": "10.12 Najczęstsze problemy i rozwiązania",
+    "text": "10.12 Najczęstsze problemy i rozwiązania\n\n\n\n\n\n\n\n\nProblem\nPrzyczyna\nRozwiązanie\n\n\n\n\nRaport się nie renderuje\nBłąd w kodzie R\nSprawdź konsolę — Quarto podaje numer linii błędu\n\n\nWykres nie pojawia się\neval: false lub błąd w kodzie\nSprawdź czy kod działa w konsoli osobno\n\n\nPolskie znaki wyświetlają się źle\nKodowanie pliku\nZapisz plik jako UTF-8 (w RStudio: File → Save with Encoding)\n\n\nTabela wychodzi poza margines w DOCX\nZa dużo kolumn\nZmniejsz czcionkę tabelki lub usuń kolumny\n\n\nCytowanie nie pojawia się\nZła etykieta w .bib\nSprawdź czy etykieta w @etykieta dokładnie odpowiada kluczowi w pliku .bib\n\n\nSpis treści nie działa w DOCX\nBrak nagłówków H1–H3\nUpewnij się że używasz #, ##, ###\n\n\nWyniki inline pokazują błąd\nObiekt nie istnieje\nSprawdź czy komórka setup jest wykonana (include: false, nie eval: false)",
+    "crumbs": [
+      "Część III — Raportowanie w Quarto",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Raporty reprodukowalne w Quarto</span>"
     ]
   }
 ]
