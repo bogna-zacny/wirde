@@ -27,6 +27,10 @@ jobs:
             tidyverse
             tidyr
             patchwork
+            knitr
+            kableExtra
+            scales
+            gt
 
       - name: Publish to GitHub Pages
         uses: quarto-dev/quarto-actions/publish@v2
