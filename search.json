@@ -627,29 +627,7 @@
     "href": "09_raporty_quarto.html#sec-template",
     "title": "10  Raporty reprodukowalne w Quarto",
     "section": "10.6 Kompletny szablon raportu",
-    "text": "10.6 Kompletny szablon raportu\nPoniżej kompletny szablon raportu ekonomicznego gotowy do wypełnienia. Skopiuj go jako punkt startowy dla własnych raportów.\n---\ntitle: \"Tytuł raportu\"\nsubtitle: \"Podtytuł\"\nauthor: \"Imię Nazwisko\"\ndate: today\nlang: pl\nbibliography: bibliografia.bib\ncsl: apa.csl\nformat:\n  html:\n    toc: true\n    toc-depth: 3\n    toc-title: \"Spis treści\"\n    number-sections: true\n    theme: cosmo\n    embed-resources: true\n    code-fold: true\n    code-summary: \"Pokaż kod\"\n    fig-width: 7\n    fig-height: 4.5\n  docx:\n    toc: true\n    number-sections: true\n    fig-width: 6\n    fig-height: 4\nexecute:\n  echo: false\n  warning: false\n  message: false\n---\n\n\n\n## Wstęp\n\nKrótki opis celu raportu, źródła danych i okresu analizy.\nDane pochodzą z bazy [@zrodlo2024].\n\n## Dane i metodologia {#sec-dane}\n\nOpis zbioru danych i zastosowanych metod.\n\n## Wyniki analizy {#sec-wyniki}\n\n### Statystyki opisowe\n\n\n::: {#tbl-statystyki .cell tbl-cap='Podstawowe statystyki opisowe'}\n\n```{.r .cell-code}\n# dane |&gt;\n#   summary() |&gt;\n#   kable(digits = 2) |&gt;\n#   kable_styling(bootstrap_options = \"striped\")\n:::\n\nWykres\n\n# ggplot(dane, aes(...)) + geom_...()\n\nJak pokazano na ?fig-glowny, …",
-    "crumbs": [
-      "Część III — Raportowanie w Quarto",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Raporty reprodukowalne w Quarto</span>"
-    ]
-  },
-  {
-    "objectID": "09_raporty_quarto.html#wnioski",
-    "href": "09_raporty_quarto.html#wnioski",
-    "title": "10  Raporty reprodukowalne w Quarto",
-    "section": "10.7 Wnioski",
-    "text": "10.7 Wnioski\nPodsumowanie najważniejszych wyników.",
-    "crumbs": [
-      "Część III — Raportowanie w Quarto",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Raporty reprodukowalne w Quarto</span>"
-    ]
-  },
-  {
-    "objectID": "09_raporty_quarto.html#literatura",
-    "href": "09_raporty_quarto.html#literatura",
-    "title": "10  Raporty reprodukowalne w Quarto",
-    "section": "10.8 Literatura",
-    "text": "10.8 Literatura\n\n\n\n````",
+    "text": "10.6 Kompletny szablon raportu\nW pliku kompletny_szablon.qmd znajduje się kompletny szablon raportu ekonomicznego gotowy do wypełnienia.",
     "crumbs": [
       "Część III — Raportowanie w Quarto",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Raporty reprodukowalne w Quarto</span>"
@@ -659,8 +637,8 @@
     "objectID": "09_raporty_quarto.html#sec-troubleshooting",
     "href": "09_raporty_quarto.html#sec-troubleshooting",
     "title": "10  Raporty reprodukowalne w Quarto",
-    "section": "10.9 Najczęstsze problemy i rozwiązania",
-    "text": "10.9 Najczęstsze problemy i rozwiązania\n\n\n\n\n\n\n\n\nProblem\nPrzyczyna\nRozwiązanie\n\n\n\n\nRaport się nie renderuje\nBłąd w kodzie R\nSprawdź konsolę — Quarto podaje numer linii błędu\n\n\nWykres nie pojawia się\neval: false lub błąd w kodzie\nSprawdź czy kod działa w konsoli osobno\n\n\nPolskie znaki wyświetlają się źle\nKodowanie pliku\nZapisz plik jako UTF-8 (w RStudio: File → Save with Encoding)\n\n\nTabela wychodzi poza margines w DOCX\nZa dużo kolumn\nZmniejsz czcionkę tabelki lub usuń kolumny\n\n\nCytowanie nie pojawia się\nZła etykieta w .bib\nSprawdź czy etykieta w @etykieta dokładnie odpowiada kluczowi w pliku .bib\n\n\nSpis treści nie działa w DOCX\nBrak nagłówków H1–H3\nUpewnij się że używasz #, ##, ###\n\n\nWyniki inline pokazują błąd\nObiekt nie istnieje\nSprawdź czy komórka setup jest wykonana (include: false, nie eval: false)",
+    "section": "10.7 Najczęstsze problemy i rozwiązania",
+    "text": "10.7 Najczęstsze problemy i rozwiązania\n\n\n\n\n\n\n\n\nProblem\nPrzyczyna\nRozwiązanie\n\n\n\n\nRaport się nie renderuje\nBłąd w kodzie R\nSprawdź konsolę — Quarto podaje numer linii błędu\n\n\nWykres nie pojawia się\neval: false lub błąd w kodzie\nSprawdź czy kod działa w konsoli osobno\n\n\nPolskie znaki wyświetlają się źle\nKodowanie pliku\nZapisz plik jako UTF-8 (w RStudio: File → Save with Encoding)\n\n\nTabela wychodzi poza margines w DOCX\nZa dużo kolumn\nZmniejsz czcionkę tabelki lub usuń kolumny\n\n\nCytowanie nie pojawia się\nZła etykieta w .bib\nSprawdź czy etykieta w @etykieta dokładnie odpowiada kluczowi w pliku .bib\n\n\nSpis treści nie działa w DOCX\nBrak nagłówków H1–H3\nUpewnij się że używasz #, ##, ###\n\n\nWyniki inline pokazują błąd\nObiekt nie istnieje\nSprawdź czy komórka setup jest wykonana (include: false, nie eval: false)",
     "crumbs": [
       "Część III — Raportowanie w Quarto",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Raporty reprodukowalne w Quarto</span>"
